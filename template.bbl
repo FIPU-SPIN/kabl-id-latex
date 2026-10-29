@@ -1,0 +1,83 @@
+\begin{thebibliography}{999}
+
+\bibitem[Qian and Hassan(2025)]{qian_hassan_2025}
+Qian, Y.; Hassan, R.
+\newblock {AI}-Integrated Instructional Design in Higher Education: A
+  Systematic Exploration of Tools, Roles, and Challenges.
+\newblock {\em Contemporary Issues in Technology and Teacher Education} {\bf
+  2025}, {\em 25}.
+
+\bibitem[Yaacoub et~al.(2025)]{yaacoub_oneclickquiz_2025}
+Yaacoub, A.;  et~al.
+\newblock Lightweight Prompt Engineering for Cognitive Alignment in Educational
+  {AI}: A {OneClickQuiz} Case Study.
+\newblock In Proceedings of the Proceedings of the 36th Central European
+  Conference on Information and Intelligent Systems (CECIIS), Vara{\v{z}}din,
+  Croatia,  2025.
+\newblock arXiv preprint 2510.03374.
+
+\bibitem[{IEEE}(2025)]{ieee_enhancing_2025}
+{IEEE}.
+\newblock Enhancing {AI}-Driven Education: Integrating Cognitive Frameworks,
+  Linguistic Feedback Analysis, and Ethical Considerations for Improved Content
+  Generation.
+\newblock In Proceedings of the IEEE Conference Proceedings, Rome, Italy,
+  2025.
+\newblock IEEE Xplore document 11229046.
+
+\bibitem[{ABC Learning Design Team, University College
+  London}(2024)]{abcld_6types}
+{ABC Learning Design Team, University College London}.
+\newblock The 6 Learning Types.
+\newblock https://abc-ld.org/6-learning-types/,  2024.
+\newblock Accessed 2026.
+
+\bibitem[Laurillard(2012)]{laurillard_2012}
+Laurillard, D.
+\newblock {\em Teaching as a Design Science: Building Pedagogical Patterns for
+  Learning and Technology}; Routledge: London, UK,  2012.
+
+\bibitem[Marstio(2025)]{marstio_2025}
+Marstio, T.
+\newblock Methodological Insights to Learning Design: Combining Constructive
+  Alignment, {Bloom}'s Taxonomy and {ABC} Method.
+\newblock In Proceedings of the ICERI2025 Proceedings,  2025, pp. 412--417.
+\newblock {\url{https://doi.org/10.21125/iceri.2025.0213}}.
+
+\bibitem[{Anonymous}(2026)]{genai_cognitive_offloading_2026}
+{Anonymous}.
+\newblock Generative {AI} and Cognitive Offloading: Assessing the Impact on
+  Critical Thinking Skills Among University Students: A Systematic Literature
+  Review.
+\newblock {\em International Journal of Artificial Intelligence} {\bf 2026},
+  {\em 12}.
+\newblock Zenodo record 20397109.
+
+\bibitem[Anderson and Krathwohl(2001)]{anderson_krathwohl_2001}
+Anderson, L.W.; Krathwohl, D.R.
+\newblock {\em A Taxonomy for Learning, Teaching, and Assessing: A Revision of
+  {Bloom}'s Taxonomy of Educational Objectives}; Longman: New York, NY, USA,
+  2001.
+
+\bibitem[Biggs(1996)]{biggs_1996}
+Biggs, J.
+\newblock Enhancing teaching through constructive alignment.
+\newblock {\em Higher Education} {\bf 1996}, {\em 32},~347--364.
+
+\bibitem[Page et~al.(2021)Page, McKenzie, Bossuyt, Boutron, Hoffmann, Mulrow,
+  et~al.]{page_prisma_2021}
+Page, M.J.; McKenzie, J.E.; Bossuyt, P.M.; Boutron, I.; Hoffmann, T.C.; Mulrow,
+  C.D.;  et~al.
+\newblock The {PRISMA} 2020 statement: an updated guideline for reporting
+  systematic reviews.
+\newblock {\em BMJ} {\bf 2021}, {\em 372},~n71.
+
+\bibitem[{Ministarstvo znanosti i obrazovanja, Republika
+  Hrvatska}(2018)]{croatia_informatics_2018}
+{Ministarstvo znanosti i obrazovanja, Republika Hrvatska}.
+\newblock Nacionalni kurikulum nastavnog predmeta Informatika za osnovne i
+  srednje {\v{s}}kole.
+\newblock Narodne novine, br. 22/2018,  2018.
+\newblock Accessed 2026.
+
+\end{thebibliography}
