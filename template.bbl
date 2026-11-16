@@ -7,77 +7,240 @@ Qian, Y.; Hassan, R.
 \newblock {\em Contemporary Issues in Technology and Teacher Education} {\bf
   2025}, {\em 25}.
 
-\bibitem[Yaacoub et~al.(2025)]{yaacoub_oneclickquiz_2025}
-Yaacoub, A.;  et~al.
+\bibitem[Yaacoub et~al.(2025{\natexlab{a}})Yaacoub, Da-Rugna, and
+  Assaghir]{yaacoub_oneclickquiz_2025}
+Yaacoub, A.; Da-Rugna, J.; Assaghir, Z.
+\newblock Assessing {AI}-Generated Questions' Alignment with Cognitive
+  Frameworks in Educational Assessment.
+\newblock {\em International Journal of Computer Theory and Engineering} {\bf
+  2025}, {\em 17},~114--125.
+
+\bibitem[Yaacoub et~al.(2025{\natexlab{b}})Yaacoub, Assaghir, and
+  Da-Rugna]{yaacoub_prompt_2025}
+Yaacoub, A.; Assaghir, Z.; Da-Rugna, J.
 \newblock Lightweight Prompt Engineering for Cognitive Alignment in Educational
   {AI}: A {OneClickQuiz} Case Study.
-\newblock In Proceedings of the Proceedings of the 36th Central European
-  Conference on Information and Intelligent Systems (CECIIS), Vara{\v{z}}din,
-  Croatia,  2025.
-\newblock arXiv preprint 2510.03374.
+\newblock arXiv preprint arXiv:2510.03374,  2025.
+\newblock {\url{https://doi.org/10.48550/arXiv.2510.03374}}.
 
-\bibitem[{IEEE}(2025)]{ieee_enhancing_2025}
-{IEEE}.
+\bibitem[Yaacoub et~al.(2025{\natexlab{c}})Yaacoub, Tarnpradab, Khumprom,
+  Assaghir, Prevost, and Da-Rugna]{ieee_enhancing_2025}
+Yaacoub, A.; Tarnpradab, S.; Khumprom, P.; Assaghir, Z.; Prevost, L.; Da-Rugna,
+  J.
 \newblock Enhancing {AI}-Driven Education: Integrating Cognitive Frameworks,
   Linguistic Feedback Analysis, and Ethical Considerations for Improved Content
   Generation.
-\newblock In Proceedings of the IEEE Conference Proceedings, Rome, Italy,
-  2025.
-\newblock IEEE Xplore document 11229046.
+\newblock In Proceedings of the Proceedings of the 2025 International Joint
+  Conference on Neural Networks (IJCNN), Rome, Italy,  2025.
+\newblock {\url{https://doi.org/10.1109/IJCNN64981.2025.11229046}}.
 
-\bibitem[{ABC Learning Design Team, University College
-  London}(2024)]{abcld_6types}
-{ABC Learning Design Team, University College London}.
-\newblock The 6 Learning Types.
-\newblock https://abc-ld.org/6-learning-types/,  2024.
-\newblock Accessed 2026.
+\bibitem[Young and Perovi{\'c}(2015)]{abcld_6types}
+Young, C.; Perovi{\'c}, N.
+\newblock {ABC} Learning Design: The Six Learning Types.
+\newblock University College London. Licensed under CC BY-NC-SA 4.0,  2015.
+\newblock Accessed on 16 November 2026.
+
+\bibitem[Young and Perovi{\'c}(2016)]{young_perovic_2016}
+Young, C.; Perovi{\'c}, N.
+\newblock Rapid and Creative Course Design: As Easy as {ABC}?
+\newblock {\em Procedia---Social and Behavioral Sciences} {\bf 2016}, {\em
+  228},~390--395.
+\newblock {\url{https://doi.org/10.1016/j.sbspro.2016.07.058}}.
 
 \bibitem[Laurillard(2012)]{laurillard_2012}
 Laurillard, D.
 \newblock {\em Teaching as a Design Science: Building Pedagogical Patterns for
-  Learning and Technology}; Routledge: London, UK,  2012.
+  Learning and Technology}; Routledge: New York, NY, USA,  2012.
 
-\bibitem[Marstio(2025)]{marstio_2025}
-Marstio, T.
+\bibitem[Marstio and Mattila(2025)]{marstio_2025}
+Marstio, T.; Mattila, A.
 \newblock Methodological Insights to Learning Design: Combining Constructive
-  Alignment, {Bloom}'s Taxonomy and {ABC} Method.
-\newblock In Proceedings of the ICERI2025 Proceedings,  2025, pp. 412--417.
+  Alignment, {Bloom's} Taxonomy and {ABC} Method.
+\newblock In Proceedings of the ICERI2025 Proceedings: 18th Annual
+  International Conference of Education, Research and Innovation, Seville,
+  Spain,  2025; pp. 412--417.
 \newblock {\url{https://doi.org/10.21125/iceri.2025.0213}}.
 
-\bibitem[{Anonymous}(2026)]{genai_cognitive_offloading_2026}
-{Anonymous}.
-\newblock Generative {AI} and Cognitive Offloading: Assessing the Impact on
-  Critical Thinking Skills Among University Students: A Systematic Literature
-  Review.
-\newblock {\em International Journal of Artificial Intelligence} {\bf 2026},
-  {\em 12}.
-\newblock Zenodo record 20397109.
+\bibitem[Risko and Gilbert(2016)]{risko_gilbert_2016}
+Risko, E.F.; Gilbert, S.J.
+\newblock Cognitive Offloading.
+\newblock {\em Trends in Cognitive Sciences} {\bf 2016}, {\em 20},~676--688.
+\newblock {\url{https://doi.org/10.1016/j.tics.2016.07.002}}.
+
+\bibitem[Zhai et~al.(2024)Zhai, Wibowo, and Li]{zhai_2024}
+Zhai, C.; Wibowo, S.; Li, L.D.
+\newblock The Effects of Over-Reliance on {AI} Dialogue Systems on Students'
+  Cognitive Abilities: A Systematic Review.
+\newblock {\em Smart Learning Environments} {\bf 2024}, {\em 11},~28.
+\newblock {\url{https://doi.org/10.1186/s40561-024-00316-7}}.
+
+\bibitem[Gerlich(2025)]{gerlich_2025}
+Gerlich, M.
+\newblock {AI} Tools in Society: Impacts on Cognitive Offloading and the Future
+  of Critical Thinking.
+\newblock {\em Societies} {\bf 2025}, {\em 15},~6.
+\newblock {\url{https://doi.org/10.3390/soc15010006}}.
+
+\bibitem[Fan et~al.(2025)Fan, Tang, Le, Shen, Tan, Zhao, Shen, Li, and
+  Ga{\v{s}}evi{\'c}]{fan_2025}
+Fan, Y.; Tang, L.; Le, H.; Shen, K.; Tan, S.; Zhao, Y.; Shen, Y.; Li, X.;
+  Ga{\v{s}}evi{\'c}, D.
+\newblock Beware of Metacognitive Laziness: Effects of Generative Artificial
+  Intelligence on Learning Motivation, Processes, and Performance.
+\newblock {\em British Journal of Educational Technology} {\bf 2025}, {\em 56}.
+\newblock {\url{https://doi.org/10.1111/bjet.13544}}.
+
+\bibitem[Gilardi et~al.(2023)Gilardi, Alizadeh, and Kubli]{gilardi_2023}
+Gilardi, F.; Alizadeh, M.; Kubli, M.
+\newblock {ChatGPT} Outperforms Crowd Workers for Text-Annotation Tasks.
+\newblock {\em Proceedings of the National Academy of Sciences} {\bf 2023},
+  {\em 120},~e2305016120.
+\newblock {\url{https://doi.org/10.1073/pnas.2305016120}}.
+
+\bibitem[Ziems et~al.(2024)Ziems, Held, Shaikh, Chen, Zhang, and
+  Yang]{ziems_2024}
+Ziems, C.; Held, W.; Shaikh, O.; Chen, J.; Zhang, Z.; Yang, D.
+\newblock Can Large Language Models Transform Computational Social Science?
+\newblock {\em Computational Linguistics} {\bf 2024}, {\em 50},~237--291.
+\newblock {\url{https://doi.org/10.1162/coli_a_00502}}.
+
+\bibitem[{Ministarstvo znanosti i obrazovanja}(2018)]{croatia_informatics_2018}
+{Ministarstvo znanosti i obrazovanja}.
+\newblock Odluka o donošenju kurikuluma za nastavni predmet {Informatike} za
+  osnovne škole i gimnazije u {Republici Hrvatskoj} [Decision on the Adoption
+  of the Curriculum for the Subject Informatics for Primary Schools and
+  Gymnasiums in the Republic of Croatia].
+\newblock Narodne novine, 22/2018, 6 March 2018,  2018.
+\newblock Accessed on 16 November 2026.
 
 \bibitem[Anderson and Krathwohl(2001)]{anderson_krathwohl_2001}
 Anderson, L.W.; Krathwohl, D.R.
 \newblock {\em A Taxonomy for Learning, Teaching, and Assessing: A Revision of
-  {Bloom}'s Taxonomy of Educational Objectives}; Longman: New York, NY, USA,
+  {Bloom's} Taxonomy of Educational Objectives}; Longman: New York, NY, USA,
   2001.
+
+\bibitem[Krathwohl(2002)]{krathwohl_2002}
+Krathwohl, D.R.
+\newblock A Revision of {Bloom's} Taxonomy: An Overview.
+\newblock {\em Theory Into Practice} {\bf 2002}, {\em 41},~212--218.
+\newblock {\url{https://doi.org/10.1207/s15430421tip4104_2}}.
 
 \bibitem[Biggs(1996)]{biggs_1996}
 Biggs, J.
-\newblock Enhancing teaching through constructive alignment.
+\newblock Enhancing Teaching through Constructive Alignment.
 \newblock {\em Higher Education} {\bf 1996}, {\em 32},~347--364.
+\newblock {\url{https://doi.org/10.1007/BF00138871}}.
+
+\bibitem[Bloom(1956)]{bloom_1956}
+Bloom, B.S., Ed.
+\newblock {\em Taxonomy of Educational Objectives: The Classification of
+  Educational Goals. {Handbook I}: Cognitive Domain}; David McKay: New York,
+  NY, USA,  1956.
+
+\bibitem[Cohen(1960)]{cohen_1960}
+Cohen, J.
+\newblock A Coefficient of Agreement for Nominal Scales.
+\newblock {\em Educational and Psychological Measurement} {\bf 1960}, {\em
+  20},~37--46.
+\newblock {\url{https://doi.org/10.1177/001316446002000104}}.
+
+\bibitem[Krippendorff(2018)]{krippendorff_2018}
+Krippendorff, K.
+\newblock {\em Content Analysis: An Introduction to Its Methodology}, 4th ed.;
+  SAGE: Thousand Oaks, CA, USA,  2018.
+
+\bibitem[Hayes and Krippendorff(2007)]{hayes_krippendorff_2007}
+Hayes, A.F.; Krippendorff, K.
+\newblock Answering the Call for a Standard Reliability Measure for Coding
+  Data.
+\newblock {\em Communication Methods and Measures} {\bf 2007}, {\em 1},~77--89.
+\newblock {\url{https://doi.org/10.1080/19312450709336664}}.
+
+\bibitem[Shaikh et~al.(2021)Shaikh, Daudpotta, and Imran]{shaikh_2021}
+Shaikh, S.; Daudpotta, S.M.; Imran, A.S.
+\newblock {Bloom's} Learning Outcomes' Automatic Classification Using {LSTM}
+  and Pretrained Word Embeddings.
+\newblock {\em IEEE Access} {\bf 2021}, {\em 9},~117887--117909.
+\newblock {\url{https://doi.org/10.1109/ACCESS.2021.3106443}}.
+
+\bibitem[Elkins et~al.(2024)Elkins, Kochmar, Cheung, and Serban]{elkins_2024}
+Elkins, S.; Kochmar, E.; Cheung, J.C.K.; Serban, I.
+\newblock How Teachers Can Use Large Language Models and {Bloom's} Taxonomy to
+  Create Educational Quizzes.
+\newblock {\em Proceedings of the AAAI Conference on Artificial Intelligence}
+  {\bf 2024}, {\em 38}.
+\newblock {\url{https://doi.org/10.1609/aaai.v38i21.30353}}.
 
 \bibitem[Page et~al.(2021)Page, McKenzie, Bossuyt, Boutron, Hoffmann, Mulrow,
-  et~al.]{page_prisma_2021}
+  Shamseer, Tetzlaff, Akl, Brennan, et~al.]{page_prisma_2021}
 Page, M.J.; McKenzie, J.E.; Bossuyt, P.M.; Boutron, I.; Hoffmann, T.C.; Mulrow,
-  C.D.;  et~al.
-\newblock The {PRISMA} 2020 statement: an updated guideline for reporting
-  systematic reviews.
+  C.D.; Shamseer, L.; Tetzlaff, J.M.; Akl, E.A.; Brennan, S.E.;  et~al.
+\newblock The {PRISMA} 2020 Statement: An Updated Guideline for Reporting
+  Systematic Reviews.
 \newblock {\em BMJ} {\bf 2021}, {\em 372},~n71.
+\newblock {\url{https://doi.org/10.1136/bmj.n71}}.
 
-\bibitem[{Ministarstvo znanosti i obrazovanja, Republika
-  Hrvatska}(2018)]{croatia_informatics_2018}
-{Ministarstvo znanosti i obrazovanja, Republika Hrvatska}.
-\newblock Nacionalni kurikulum nastavnog predmeta Informatika za osnovne i
-  srednje {\v{s}}kole.
-\newblock Narodne novine, br. 22/2018,  2018.
-\newblock Accessed 2026.
+\bibitem[Gwet(2008)]{gwet_2008}
+Gwet, K.L.
+\newblock Computing Inter-Rater Reliability and Its Variance in the Presence of
+  High Agreement.
+\newblock {\em British Journal of Mathematical and Statistical Psychology} {\bf
+  2008}, {\em 61},~29--48.
+\newblock {\url{https://doi.org/10.1348/000711006X126600}}.
+
+\bibitem[Cohen(1968)]{cohen_1968}
+Cohen, J.
+\newblock Weighted Kappa: Nominal Scale Agreement Provision for Scaled
+  Disagreement or Partial Credit.
+\newblock {\em Psychological Bulletin} {\bf 1968}, {\em 70},~213--220.
+\newblock {\url{https://doi.org/10.1037/h0026256}}.
+
+\bibitem[Efron and Tibshirani(1993)]{efron_tibshirani_1993}
+Efron, B.; Tibshirani, R.J.
+\newblock {\em An Introduction to the Bootstrap}; Chapman \& Hall: New York,
+  NY, USA,  1993.
+
+\bibitem[Landis and Koch(1977)]{landis_koch_1977}
+Landis, J.R.; Koch, G.G.
+\newblock The Measurement of Observer Agreement for Categorical Data.
+\newblock {\em Biometrics} {\bf 1977}, {\em 33},~159--174.
+\newblock {\url{https://doi.org/10.2307/2529310}}.
+
+\bibitem[Kottner et~al.(2011)Kottner, Audig{\'e}, Brorson, Donner, Gajewski,
+  Hr{\'o}bjartsson, Roberts, Shoukri, and Streiner]{kottner_grras_2011}
+Kottner, J.; Audig{\'e}, L.; Brorson, S.; Donner, A.; Gajewski, B.J.;
+  Hr{\'o}bjartsson, A.; Roberts, C.; Shoukri, M.; Streiner, D.L.
+\newblock Guidelines for Reporting Reliability and Agreement Studies ({GRRAS})
+  Were Proposed.
+\newblock {\em Journal of Clinical Epidemiology} {\bf 2011}, {\em 64},~96--106.
+\newblock {\url{https://doi.org/10.1016/j.jclinepi.2010.03.002}}.
+
+\bibitem[Perovi{\'c} and Young(2020)]{perovic_young_2020}
+Perovi{\'c}, N.; Young, C.P.L.
+\newblock {ABC LD}---A New Toolkit for Rapid Learning Design.
+\newblock In Proceedings of the Proceedings of the European Distance and
+  E-Learning Network (EDEN) 2020 Annual Conference. European Distance and
+  E-Learning Network,  2020.
+
+\bibitem[Ku{\v{c}}ina~Softi{\'c} and Radobolja(2022)]{kucina_softic_2022}
+Ku{\v{c}}ina~Softi{\'c}, S.; Radobolja, T.
+\newblock {ABC} Method for Online Course Design---From {F2F} to Online Workshop
+  in {Croatian} Perspective.
+\newblock In Proceedings of the Towards Smart and Inclusive Learning Ecosystem:
+  EDEN Research Workshop Proceedings, Dubrovnik, Croatia,  2022; pp. 44--50.
+
+\bibitem[Xu et~al.(2025)Xu, Hur, Kim, Kozan, and Baptiste]{xu_2025}
+Xu, J.; Hur, J.; Kim, I.; Kozan, K.; Baptiste, J.
+\newblock Integration of Artificial Intelligence into Instructional Design.
+\newblock {\em The Journal of Applied Instructional Design} {\bf 2025}, {\em
+  14}.
+
+\bibitem[Li et~al.(2024)Li, Huijser, Zhang, Zhang, and Zhang]{li_fishbone_2024}
+Li, N.; Huijser, H.; Zhang, S.; Zhang, T.; Zhang, X.
+\newblock Putting the Flesh on the Bones: Using a Fishbone Digital Learning
+  Design Method to Align Educational Objectives.
+\newblock {\em Education and Information Technologies} {\bf 2024}, {\em
+  29},~25281--25306.
+\newblock {\url{https://doi.org/10.1007/s10639-024-12799-5}}.
 
 \end{thebibliography}

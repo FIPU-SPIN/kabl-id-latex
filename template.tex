@@ -79,33 +79,40 @@
 \usepackage{multirow}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
+\usepackage{longtable}
+% Highlight for items the author still has to complete before submission (remove when done)
+\newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{KABL-ID: A Cognitive Alignment Diagnostic Framework for Instructional Design in the Age of Artificial Intelligence, Demonstrated on a National Informatics Curriculum}
+% Previous title: KABL-ID: A Cognitive Alignment Diagnostic Framework for Instructional Design in the Age of Artificial Intelligence, Demonstrated on a National Informatics Curriculum
+\Title{KABL-ID: A Cognitive Alignment Diagnostic Framework for Instructional Design in the Age of Artificial Intelligence, Applied to a National Informatics Curriculum by Human and Large Language Model Coders}
 
 % Author Orchid ID: enter ID or remove command
-\newcommand{\orcidauthorA}{0009-0000-9740-7381}
+\newcommand{\orcidauthorA}{0009-0000-9740-7381}%Marijela
+\newcommand{\orcidauthorB}{0000-0002-3015-1024}%Sandi
+\newcommand{\orcidauthorD}{0000-0002-5964-245X}%Ivan
+\newcommand{\orcidauthorE}{0000-0003-4444-7202}%Darko
 
 % Authors, for the paper (add full first names)
-\Author{Marijela Miličević $^{1}$\orcidA{}}
+\Author{Marijela Miličević $^{1}$\orcidA{}, Sandi Baressi Šegota $^{1}$\orcidB{}, Ivan Lorencin $^{1}$\orcidD{}, Darko Etinger $^{1}$\orcidE{}}
 
 % MDPI internal command: Authors, for metadata in PDF
-\AuthorNames{Marijela Miličević}
+\AuthorNames{Marijela Miličević, Sandi Baressi Šegota, Ivan Lorencin, Darko Etinger}
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address{%
-$^{1}$ \quad Faculty of Informatics, Juraj Dobrila University of Pula, Alda Negrija 6, 52100 Pula, Croatia; marijela.milicevic@unipu.hr
+$^{1}$ \quad Faculty of Informatics, Juraj Dobrila University of Pula, Alda Negrija 6, 52100 Pula, Croatia; marijela.milicevic@unipu.hr (M.M.), sandi.baressi.segota@unipu.hr (S.B.Š.), ivan.lorencin@unipu.hr (I.L.), darko.etinger@unipu.hr (D.E.)
 }
 
 % Contact information of the corresponding author
-\corres{Correspondence: marijela.milicevic@unipu.hr}
+\corres{Correspondence: ivan.lorencin@unipu.hr}
 
-% Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{The integration of artificial intelligence (AI) tools into instructional design raises a question that existing frameworks do not systematically address: whether an AI tool has shifted the cognitive level required by a designed task, and whether that shift remains undocumented. This paper proposes KABL-ID (Cognitive Alignment Baseline for Instructional Design), a conceptual diagnostic framework that maps ABC learning types against Bloom's taxonomy levels and introduces a third dimension---the mode of AI intervention---to classify design decisions as aligned, shifted, or requiring redesign. The methodology combines a PRISMA-guided systematic literature review with a demonstration on a publicly available national curriculum. The review identifies a gap: existing work assesses cognitive alignment of AI-generated content but not cognitive shifts within the design process. The framework is then applied to the Croatian national Informatics curriculum for primary and secondary education, coding learning outcomes in the domain of computational thinking and programming. The demonstration shows that the matrix can detect where AI tools would displace intended cognitive demand. The contribution is threefold: a terminological distinction between cognitive alignment and cognitive shift, an operationalisable diagnostic matrix applicable without student data, and a demonstration on a real curriculum. Limitations include the absence of empirical validation with designers and the single-curriculum demonstration; these define the next research phase.}
+% Abstract (Do not insert blank lines, i.e. \\)
+\abstract{Artificial intelligence (AI) tools now enter instructional design, yet no framework records whether a tool has shifted the cognitive level a designed task requires. This paper proposes KABL-ID (Cognitive Alignment Baseline for Instructional Design), a diagnostic matrix that crosses the six ABC learning types with the six levels of the revised Bloom's taxonomy and adds a third dimension, the mode of AI intervention (assistive, substitutive, redesign required). A PRISMA-guided review of 14 studies showed that existing work evaluates the cognitive alignment of AI-generated content but offers no process-level instrument for detecting cognitive shifts. The matrix was then applied to all 127 learning outcomes of the Croatian national Informatics curriculum for primary schools and gymnasiums. Two human coders reached substantial agreement (Bloom: quadratic-weighted $\kappa = 0.81$; ABC: $\kappa = 0.85$). Five large language models, each run three times and once on a shuffled input, agreed with the human coders at a similar or higher level (Bloom $\kappa_w$ 0.84--0.96; ABC $\kappa$ 0.83--0.93), were stable across runs, and were insensitive to item order. However, they agreed systematically more with one coder than with the other. In total, 80 outcomes (63\%) fall in shift-sensitive cells (Analyze and above), concentrated in Investigation--Analyze and Production--Create. KABL-ID can therefore be applied reliably to real curricula, and LLMs can serve as checking coders, but not as substitutes for human judgement.}
 
 % Keywords
-\keyword{instructional design; artificial intelligence; Bloom's taxonomy; cognitive shift; ABC Learning Design; curriculum analysis; PRISMA}
+\keyword{instructional design; artificial intelligence; Bloom's taxonomy; cognitive shift; ABC Learning Design; curriculum analysis; inter-rater reliability; large language models; PRISMA}
 
 \begin{document}
 
@@ -114,17 +121,24 @@ $^{1}$ \quad Faculty of Informatics, Juraj Dobrila University of Pula, Alda Negr
 
 Generative artificial intelligence (AI) is increasingly embedded in instructional design workflows, assisting with the generation of learning objectives, activities, assessment items, and explanatory materials \cite{qian_hassan_2025}. A recent systematic review of AI-integrated instructional design in higher education describes a rapidly expanding ecosystem of tools and argues that AI is no longer merely an augmenting tool but is becoming an embedded and co-creative partner in design practice \cite{qian_hassan_2025}. This shift raises a question that the existing literature has not adequately addressed: when an AI tool enters the design process, does it preserve, elevate, or silently lower the cognitive demand that the designed task was intended to impose?
 
-Existing approaches to cognitive quality in AI-supported education have concentrated on evaluating AI-generated outputs against an external cognitive standard. The OneClickQuiz framework integrates Bloom's taxonomy to assess whether automatically generated quiz items align with intended cognitive levels, finding that explicit, detailed prompts are crucial for precise alignment \cite{yaacoub_oneclickquiz_2025}. A related framework combines Bloom's taxonomy, SOLO taxonomy, and linguistic feedback analysis to guide AI content generation through a three-phase approach encompassing cognitive alignment, linguistic feedback, and ethical safeguards \cite{ieee_enhancing_2025}. These contributions are valuable but share a common locus: they assess the \emph{product} of AI generation against a cognitive standard external to the design process itself.
+Existing approaches to cognitive quality in AI-supported education have concentrated on evaluating AI-generated outputs against an external cognitive standard. The OneClickQuiz work integrates Bloom's taxonomy to assess whether automatically generated quiz items align with intended cognitive levels \cite{yaacoub_oneclickquiz_2025}, and a follow-up study finds that explicit, detailed prompts are crucial for precise alignment \cite{yaacoub_prompt_2025}. A related framework combines Bloom's taxonomy, SOLO taxonomy, and linguistic feedback analysis to guide AI content generation through a three-phase approach encompassing cognitive alignment, linguistic feedback, and ethical safeguards \cite{ieee_enhancing_2025}. These contributions are valuable but share a common locus: they assess the \emph{product} of AI generation against a cognitive standard external to the design process itself.
 
-A parallel development has occurred in learning design methodology. The ABC Learning Design method, developed at University College London since 2015, operationalises six learning types---acquisition, investigation, practice, discussion, collaboration, and production---grounded in Laurillard's Conversational Framework \cite{abcld_6types, laurillard_2012}. The method provides a practical vocabulary for visualising the balance of activities in a course. Recent work has begun to combine ABC Learning Design with Bloom's taxonomy to strengthen constructive alignment, using Bloom levels to classify learning objectives before mapping them onto ABC activity types \cite{marstio_2025}. However, the ABC--Bloom combination remains a planning aid: it helps designers decide what activities to use at what cognitive level before or during design, but it does not provide a mechanism for detecting when an AI tool introduced into the design process subsequently displaces that level.
+A parallel development has occurred in learning design methodology. The ABC Learning Design method, developed at University College London since 2015, operationalises six learning types---acquisition, investigation, practice, discussion, collaboration, and production---grounded in Laurillard's Conversational Framework \cite{abcld_6types, young_perovic_2016, laurillard_2012}. The method provides a practical vocabulary for visualising the balance of activities in a course. Recent work has begun to combine ABC Learning Design with Bloom's taxonomy to strengthen constructive alignment, using Bloom levels to classify learning objectives before mapping them onto ABC activity types \cite{marstio_2025}. However, the ABC--Bloom combination remains a planning aid: it helps designers decide what activities to use at what cognitive level before or during design, but it does not provide a mechanism for detecting when an AI tool introduced into the design process subsequently displaces that level.
 
-The gap, therefore, lies at the intersection of these developments. On one side, cognitive quality of AI outputs is assessed externally. On the other, cognitive intent of learning activities is planned internally. What remains unexamined is the moment of integration. This gap is particularly consequential given evidence that cognitive offloading to AI can reduce reflective engagement and independent reasoning, with outcomes depending on how the learner cognitively engages with the system rather than on the tool alone \cite{genai_cognitive_offloading_2026}.
+The gap, therefore, lies at the intersection of these developments. On one side, cognitive quality of AI outputs is assessed externally. On the other, cognitive intent of learning activities is planned internally. What remains unexamined is the moment of integration. This gap is particularly consequential given evidence that cognitive offloading to AI can reduce reflective engagement and independent reasoning, with outcomes depending on how the learner cognitively engages with the system rather than on the tool alone \cite{risko_gilbert_2016, zhai_2024, gerlich_2025, fan_2025}.
 
-This paper proposes a conceptual response. KABL-ID (Cognitive Alignment Baseline for Instructional Design) is a diagnostic matrix that maps ABC learning types against Bloom's taxonomy levels and introduces a third dimension---the mode of AI intervention---to classify each design decision as aligned, shifted downward, or requiring redesign. The framework is positioned at the process level rather than the outcome level: it produces a documented design artefact, not a student assessment.
+This paper proposes a response. KABL-ID (Cognitive Alignment Baseline for Instructional Design) is a diagnostic matrix that maps ABC learning types against Bloom's taxonomy levels and introduces a third dimension---the mode of AI intervention---to classify each design decision as aligned, shifted downward, or requiring redesign. The framework is positioned at the process level rather than the outcome level: it produces a documented design artefact, not a student assessment.
 
-The paper makes three contributions. First, it distinguishes terminologically between \emph{cognitive alignment} (a property of AI-generated content relative to an intended level, as used in OneClickQuiz and related work) and \emph{cognitive shift} (a process artefact arising when an AI tool changes the distribution of cognitive labour in a designed activity). Second, it operationalises this distinction in a matrix that instructional designers can apply without access to student data. Third, it demonstrates the framework on a publicly available national curriculum---the Croatian Informatics curriculum for primary and secondary education---showing how the matrix can detect potential cognitive shifts in existing learning outcomes.
+A framework of this kind is only useful if its two coordinates can be assigned consistently. If two designers place the same learning outcome in different cells, the shift diagnosis built on that cell is arbitrary. A second practical question follows from the subject matter itself: if AI tools are to be audited with KABL-ID, can AI tools also help to apply it? Large language models (LLMs) are increasingly used as annotators of text \cite{gilardi_2023, ziems_2024}, and a curriculum audit is exactly the kind of repetitive classification task that invites such use. The study therefore addresses three research questions:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{RQ1.} How reliably can independent human coders assign the two KABL-ID coordinates (Bloom level and ABC learning type) to the learning outcomes of a national curriculum?
+  \item \textbf{RQ2.} To what extent do general-purpose LLMs, given the same coding protocol, reproduce the human coding, and how stable and order-sensitive are their codings?
+  \item \textbf{RQ3.} What proportion and which kinds of curriculum outcomes fall into the shift-sensitive region of the KABL-ID matrix?
+\end{itemize}
 
-The methodology combines a PRISMA-guided systematic literature review with the framework construction and curriculum demonstration. No human participants are involved, and no empirical claims about learning outcomes are made.
+The paper makes four contributions. First, it distinguishes terminologically between \emph{cognitive alignment} (a property of AI-generated content relative to an intended level, as used in OneClickQuiz and related work) and \emph{cognitive shift} (a process artefact arising when an AI tool changes the distribution of cognitive labour in a designed activity). Second, it operationalises this distinction in a fully specified 36-cell matrix that instructional designers can apply without access to student data. Third, it applies the matrix to the complete set of 127 learning outcomes of the Croatian Informatics curriculum for primary schools and gymnasiums \cite{croatia_informatics_2018}, with two independent human coders and five LLMs, and reports the reliability of the coordinates. Fourth, it maps the curriculum's exposure to cognitive shift and illustrates the A/S/R overlay on real outcomes.
+
+The methodology combines a PRISMA-guided systematic literature review, the framework construction, and a reliability study of curriculum coding. No students or student data are involved, and no claims about learning outcomes are made. All data and analysis code are openly available (see Data Availability Statement).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background and Related Work}
@@ -132,25 +146,29 @@ The methodology combines a PRISMA-guided systematic literature review with the f
 
 \subsection{ABC Learning Design and Learning Types}
 
-ABC Learning Design is a hands-on curriculum development method developed at University College London and grounded in Laurillard's Conversational Framework \cite{laurillard_2012}. The method operationalises six learning types: acquisition (learning through listening, reading, watching), investigation (exploring, comparing, and critiquing resources), practice (adapting actions using feedback), discussion (articulating ideas and responding to others), collaboration (building shared understanding through group work), and production (consolidating understanding by creating an artefact) \cite{abcld_6types}. In a typical workshop, instructors use cards representing these types to storyboard a course, making the balance of activities visible and negotiable.
+ABC Learning Design is a hands-on curriculum development method developed at University College London and grounded in Laurillard's Conversational Framework \cite{laurillard_2012, young_perovic_2016}. The method operationalises six learning types: acquisition (learning through listening, reading, watching), investigation (exploring, comparing, and critiquing resources), practice (adapting actions using feedback), discussion (articulating ideas and responding to others), collaboration (building shared understanding through group work), and production (consolidating understanding by creating an artefact) \cite{abcld_6types}. In a typical workshop, instructors use cards representing these types to storyboard a course, making the balance of activities visible and negotiable.
 
-The method's strength lies in its speed and its capacity to foster dialogue among teaching teams. A recognised limitation, however, is its relatively light treatment of constructive alignment: the method helps teams design activities but does not by itself ensure that activities and assessment match intended learning outcomes at the appropriate cognitive level \cite{marstio_2025}. Marstio (2025) addresses this limitation by combining ABC with Bloom's taxonomy, breaking course-level objectives into measurable sub-objectives classified by Bloom level and then using ABC cards to design activities that span the full range of cognitive demand \cite{marstio_2025}. Table 1 in Marstio's work maps each Bloom level to sample action verbs, assignment types, and appropriate ABC learning types \cite{marstio_2025}.
+The method's strength lies in its speed and its capacity to foster dialogue among teaching teams. A recognised limitation, however, is its relatively light treatment of constructive alignment: the method helps teams design activities but does not by itself ensure that activities and assessment match intended learning outcomes at the appropriate cognitive level \cite{marstio_2025}. Marstio and Mattila address this limitation by combining ABC with Bloom's taxonomy, breaking course-level objectives into measurable sub-objectives classified by Bloom level and then using ABC cards to design activities that span the full range of cognitive demand \cite{marstio_2025}.
 
 \subsection{Bloom's Taxonomy in Instructional Design}
 
-Bloom's taxonomy, particularly in its revised form, provides a hierarchical vocabulary for classifying cognitive demand: Remember, Understand, Apply, Analyze, Evaluate, and Create \cite{anderson_krathwohl_2001}. In instructional design, the taxonomy is most commonly used to write and classify learning objectives, and to check that assessment tasks require the level of cognitive work that the objectives specify. Constructive alignment, in Biggs's formulation, requires that intended learning outcomes, teaching and learning activities, and assessment tasks all operate at the same cognitive level \cite{biggs_1996}.
+Bloom's taxonomy, particularly in its revised form, provides a hierarchical vocabulary for classifying cognitive demand: Remember, Understand, Apply, Analyze, Evaluate, and Create \cite{anderson_krathwohl_2001, krathwohl_2002}. In instructional design, the taxonomy is most commonly used to write and classify learning objectives, and to check that assessment tasks require the level of cognitive work that the objectives specify. Constructive alignment, in Biggs's formulation, requires that intended learning outcomes, teaching and learning activities, and assessment tasks all operate at the same cognitive level \cite{biggs_1996}.
 
-The revised taxonomy's cognitive process dimension provides action verbs for each level: Remember (recognize, recall), Understand (interpret, classify, summarize, explain), Apply (execute, implement), Analyze (differentiate, organize, attribute), Evaluate (check, critique), and Create (generate, plan, produce) \cite{anderson_krathwohl_2001}. These verbs are the operational link between curriculum outcomes and the KABL-ID matrix: an outcome statement containing ``analizira'' or ``uspoređuje'' signals an Analyze-level demand, while ``izrađuje'' or ``osmišljava'' signals Create.
+The revised taxonomy's cognitive process dimension provides action verbs for each level: Remember (recognize, recall), Understand (interpret, classify, summarize, explain), Apply (execute, implement), Analyze (differentiate, organize, attribute), Evaluate (check, critique), and Create (generate, plan, produce) \cite{anderson_krathwohl_2001}. These verbs are the operational link between curriculum outcomes and the KABL-ID matrix: an outcome statement containing ``analizira'' (analyses) or ``uspoređuje'' (compares) signals an Analyze-level demand, while ``izrađuje'' (makes) or ``osmišljava'' (designs) signals Create. One detail of the revision matters for coding: the original taxonomy placed Evaluation above Synthesis, whereas the revised taxonomy places Create (the successor of Synthesis) above Evaluate \cite{bloom_1956, krathwohl_2002}. Outcomes that combine creating and evaluating verbs are therefore sensitive to which ordering a coder has internalised.
 
 \subsection{AI in Instructional Design and Cognitive Offloading}
 
-Generative AI is increasingly used in instructional design to draft materials, generate assessment items, and produce explanatory content. Qian and Hassan's systematic review identifies both the promise of AI for efficiency and scalability and growing concerns over ``the erosion of design intentionality, learner-centeredness, and pedagogical depth in the pursuit of automation'' \cite{qian_hassan_2025}. This concern is directly relevant to the present framework: if AI makes a flawed design more efficient, the flaw becomes harder to detect.
+Generative AI is increasingly used in instructional design to draft materials, generate assessment items, and produce explanatory content. Qian and Hassan's systematic review identifies both the promise of AI for efficiency and scalability and growing concerns over ``the erosion of design intentionality'' in the pursuit of automation \cite{qian_hassan_2025}. This concern is directly relevant to the present framework: if AI makes a flawed design more efficient, the flaw becomes harder to detect.
 
-A complementary literature addresses cognitive offloading. A systematic review of generative AI and cognitive offloading among university students identifies three distinct modes of AI interaction---passive consumption, assisted learning, and reflective collaboration---that produce significantly different cognitive outcomes \cite{genai_cognitive_offloading_2026}. The review concludes that the cognitive consequences of generative AI are determined not solely by AI usage itself, but by the manner in which students cognitively engage with these systems, and proposes that future educational impact depends on ``preserving cognitive ownership, reflective engagement, and critical inquiry'' \cite{genai_cognitive_offloading_2026}. This distinction between passive and reflective engagement is directly relevant to instructional design: the same AI tool can either support or displace cognitive work depending on how the designed activity structures the learner's interaction with it.
+A complementary literature addresses cognitive offloading, the use of external resources to reduce the cognitive demand of a task \cite{risko_gilbert_2016}. A PRISMA-guided review of 14 studies found that students' over-reliance on AI dialogue systems is driven by a preference for cognitive shortcuts and is associated with weaker critical thinking, decision-making, and analytical reasoning \cite{zhai_2024}. In a mixed-methods study with 666 participants, frequent AI tool use was negatively correlated with critical thinking, and the relationship was mediated by cognitive offloading \cite{gerlich_2025}. In a randomised comparison of support from ChatGPT, a human expert, a checklist tool, or no support, learners supported by ChatGPT improved their task performance but engaged less in metacognitive processes, a pattern the authors call metacognitive laziness \cite{fan_2025}. Taken together, these studies indicate that the cognitive consequences of AI depend less on whether it is used than on how the learner engages with it. This distinction between passive and reflective engagement is directly relevant to instructional design: the same AI tool can either support or displace cognitive work depending on how the designed activity structures the learner's interaction with it.
+
+\subsection{Large Language Models as Coders of Educational Text}
+
+Classifying text against a codebook is a long-standing task in content analysis, traditionally evaluated by inter-coder reliability coefficients such as Cohen's $\kappa$ and Krippendorff's $\alpha$ \cite{cohen_1960, krippendorff_2018, hayes_krippendorff_2007}. LLMs have been shown to match or exceed crowd workers on several text-annotation tasks \cite{gilardi_2023}, and broad benchmarks indicate that they can support, but not fully replace, human coding in social-science classification \cite{ziems_2024}. In the AI-in-education literature, machine-learning classifiers have been trained to assign Bloom levels to course learning outcomes \cite{shaikh_2021}, and LLMs and fine-tuned classifiers have been used to generate and classify questions by Bloom level \cite{yaacoub_oneclickquiz_2025, elkins_2024}. Two questions are rarely addressed together: whether LLMs agree with \emph{independent} human coders working from the same protocol, and whether their agreement is stable across repeated runs and input orderings. Both matter if LLMs are to be used in curriculum audits.
 
 \subsection{The Gap: Cognitive Shift as a Process Artefact}
 
-The literature establishes two separate insights. First, cognitive alignment of AI-generated content can be assessed and improved through prompt design and taxonomic frameworks \cite{yaacoub_oneclickquiz_2025, ieee_enhancing_2025}. Second, cognitive offloading can undermine learning when it replaces rather than supports reflective engagement \cite{genai_cognitive_offloading_2026}. What has not been articulated is a framework that connects these insights at the level of the instructional design process itself.
+The literature establishes two separate insights. First, cognitive alignment of AI-generated content can be assessed and improved through prompt design and taxonomic frameworks \cite{yaacoub_oneclickquiz_2025, yaacoub_prompt_2025, ieee_enhancing_2025}. Second, cognitive offloading can undermine learning when it replaces rather than supports reflective engagement \cite{zhai_2024, gerlich_2025, fan_2025}. What has not been articulated is a framework that connects these insights at the level of the instructional design process itself.
 
 The concept of ``cognitive alignment'' in existing work refers to a property of generated content: whether an AI-produced item matches an intended Bloom level \cite{yaacoub_oneclickquiz_2025}. The concept proposed here, \emph{cognitive shift}, refers to a change in the distribution of cognitive labour within a designed activity, arising when an AI tool performs work that the activity was designed to require from the learner. A cognitive shift is not necessarily a failure of content alignment; it is a process artefact that occurs when the designer's intent and the tool's operation diverge. KABL-ID is designed to make this artefact visible and documentable within existing design workflows.
 
@@ -160,15 +178,17 @@ The concept of ``cognitive alignment'' in existing work refers to a property of 
 
 \subsection{Research Design}
 
-This is a conceptual paper with two empirical components: a PRISMA-guided systematic literature review and a curriculum demonstration. It does not involve human participants, student data, or institutional records. The research design follows three stages: (1) a systematic literature review following PRISMA 2020 guidelines to establish the state of the art and identify the gap; (2) construction of the KABL-ID diagnostic matrix; (3) demonstration of the matrix on a publicly available national curriculum to show its operational applicability.
+The study has three stages: (1) a systematic literature review following PRISMA 2020 guidelines to establish the state of the art and identify the gap; (2) construction of the KABL-ID diagnostic matrix; (3) application of the matrix to the complete set of learning outcomes of a publicly available national curriculum, coded independently by two human coders and five LLMs, with a full inter-rater reliability analysis. The study involves no students, student data, or institutional records; the coded material is a published legal document.
 
 \subsection{Stage 1: PRISMA-Guided Systematic Literature Review}
+\label{sec:prisma}
 
 \subsubsection{Protocol and Registration}
 
-The review followed the PRISMA 2020 statement for systematic reviews \cite{page_prisma_2021}. No formal protocol registration was undertaken, as this is a conceptual paper rather than a clinical or social-science systematic review with health or policy outcomes. The review's purpose is to establish the conceptual landscape and identify the gap that KABL-ID addresses.
+The review followed the PRISMA 2020 statement for systematic reviews \cite{page_prisma_2021}. No formal protocol registration was undertaken, as the review served conceptual mapping rather than effect estimation. Its purpose is to establish the conceptual landscape and identify the gap that KABL-ID addresses.
 
 \subsubsection{Eligibility Criteria}
+\label{sec:eligibility}
 
 Studies were eligible if they met all of the following:
 \begin{itemize}[leftmargin=*]
@@ -181,6 +201,7 @@ Studies were eligible if they met all of the following:
 Studies were excluded if they were editorials, commentaries, or non-peer-reviewed preprints without subsequent publication.
 
 \subsubsection{Information Sources and Search Strategy}
+\label{sec:search}
 
 Searches were conducted in Scopus, Web of Science, and ERIC. The search string combined terms from three clusters:
 
@@ -190,17 +211,25 @@ Searches were conducted in Scopus, Web of Science, and ERIC. The search string c
 
 \textbf{Cluster 3 (AI):} ``artificial intelligence'' OR ``generative AI'' OR ``large language model''
 
-The final search string was: (Cluster 1) AND (Cluster 2 OR Cluster 3), with filters for publication date and language.
+The final search string was: (Cluster 1) AND (Cluster 2 OR Cluster 3), applied to titles, abstracts, and keywords, with filters for publication date (January 2015 to December 2025) and language (English). The database-specific search strings are given in Appendix~\ref{appendix:search}. Reference lists of included studies were not systematically searched, and no grey literature sources were used.
 
 \subsubsection{Selection Process}
+\label{sec:selection}
 
-Titles and abstracts were screened against the eligibility criteria. Full texts of potentially eligible records were retrieved and assessed. Screening was performed by the author. Given the conceptual nature of the review and the single-reviewer design, no inter-rater reliability statistic is reported; this is acknowledged as a limitation.
+Titles and abstracts were screened against the eligibility criteria. Full texts of potentially eligible records were retrieved and assessed. Screening was performed by the first author (M.M.). Given the conceptual nature of the review and the single-reviewer design, no inter-rater reliability statistic is reported for screening; this is acknowledged as a limitation. The selection flow is shown in Figure~\ref{fig:prisma}.
 
 \subsubsection{Data Extraction}
+\label{sec:extraction}
 
-For each included study, the following data were extracted: authors, year, publication type, focus area (ABC, Bloom, AI, offloading), key findings relevant to the gap, and whether the study addressed cognitive shifts at the process level (rather than product level).
+For each included study, the following data were extracted by the first author into a structured form: authors, year, publication type, focus area (ABC, Bloom, AI, offloading, or background), key findings relevant to the gap, and whether the study addressed cognitive shifts at the process level (rather than product level). No outcome effect sizes were extracted, because the review maps concepts rather than estimating effects.
+
+\subsubsection{Risk of Bias and Synthesis}
+\label{sec:synthesis}
+
+Because the included studies differ in design (method descriptions, framework papers, experiments, surveys, and reviews) and the review does not pool effects, no formal risk-of-bias tool was applied; publication type and design are reported for each study instead. The findings were synthesised narratively, grouped by focus category, with the process-level question as the organising criterion. Certainty of evidence (PRISMA items 15 and 22) was not assessed, as no effect estimates were synthesised.
 
 \subsection{Stage 2: Matrix Construction}
+\label{sec:matrix}
 
 The KABL-ID matrix is a two-dimensional grid with a third classificatory overlay.
 
@@ -217,7 +246,7 @@ The KABL-ID matrix is a two-dimensional grid with a third classificatory overlay
   \item \textbf{R (Redesign required):} The substitution is pedagogically unacceptable at the intended level, and the design must be modified.
 \end{itemize}
 
-The diagnostic rule is: \emph{if mode S is recorded for a cell whose Bloom level is Analyze or above, a cognitive shift has occurred and must be documented.}
+The diagnostic rule is: \emph{if mode S is recorded for a cell whose Bloom level is Analyze or above, a cognitive shift has occurred and must be documented.} Figure~\ref{fig:workflow} summarises the procedure.
 
 \begin{table}[H]
 \caption{The KABL-ID matrix: full 36-cell grid with cell descriptors. Cells at Bloom levels Analyze, Evaluate, and Create (rightmost three columns) are shift-sensitive; mode S in these cells triggers a documentation requirement.}
@@ -230,139 +259,543 @@ The diagnostic rule is: \emph{if mode S is recorded for a cell whose Bloom level
 \toprule
 \textbf{Learning type} & \textbf{Remember} & \textbf{Understand} & \textbf{Apply} & \textbf{Analyze} & \textbf{Evaluate} & \textbf{Create} \\
 \midrule
-Acquisition & recall definitions & explain in own words & apply rule to standard case & --- & --- & --- \\
+Acquisition & recall definitions & explain in own words & apply rule to standard case & distinguish key elements of presented material & judge clarity and credibility of an explanation & reorganise received content into own model or concept map \\
 \midrule
-Investigation & locate sources & summarise content & apply method to new data & compare and differentiate sources & critique source reliability & --- \\
+Investigation & locate sources & summarise content & apply method to new data & compare and differentiate sources & critique source reliability & formulate own inquiry question or hypothesis \\
 \midrule
-Practice & recall procedure steps & explain why step is needed & execute with feedback & diagnose errors & judge quality of performance & --- \\
+Practice & recall procedure steps & explain why step is needed & execute with feedback & diagnose errors & judge quality of performance & devise own procedure or variant \\
 \midrule
-Discussion & recall positions & paraphrase views & --- & compare and contrast arguments & assess strength of arguments & --- \\
+Discussion & recall positions & paraphrase views & use concepts to support a position & compare and contrast arguments & assess strength of arguments & co-construct a new position or proposal \\
 \midrule
-Collaboration & recall roles & explain group task & --- & --- & assess group process & construct shared artefact \\
+Collaboration & recall roles & explain group task & carry out assigned part of a shared task & divide a shared problem into sub-tasks & assess group process & construct shared artefact \\
 \midrule
-Production & recall conventions & describe intended artefact & apply conventions & --- & critique draft & construct original artefact synthesising understanding \\
+Production & recall conventions & describe intended artefact & apply conventions & deconstruct a model artefact & critique draft & construct original artefact synthesising understanding \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-\subsection{Stage 3: Curriculum Demonstration}
+\begin{figure}[H]
+\centering
+\resizebox{0.92\linewidth}{!}{%
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, align=center, font=\footnotesize, minimum height=11mm, text width=28mm, fill=gray!6},
+  dec/.style={draw, rounded corners=2pt, align=center, font=\footnotesize, minimum height=11mm, text width=30mm, fill=orange!10},
+  arr/.style={-{Stealth[length=2mm]}, thick}]
+\node[box] (lo) at (0,0) {Learning outcome or designed activity};
+\node[box] (bl) at (3.8,0.85) {\textbf{Bloom level}\\(highest verb)};
+\node[box] (abc) at (3.8,-0.85) {\textbf{ABC type}\\(dominant activity)};
+\node[box] (cell) at (7.6,0) {\textbf{Matrix cell}\\(36 cells, Table~\ref{tab:kablid})};
+\node[box] (mode) at (7.6,-2.7) {\textbf{AI mode} for each tool\\A / S / R};
+\node[dec] (rule) at (3.8,-2.7) {Bloom $\geq$ Analyze\\ and mode S?};
+\node[box] (no) at (0,-2.7) {No shift flag;\\ record mode};
+\node[dec, text width=34mm] (yes) at (3.8,-4.6) {\textbf{Cognitive shift}: restrict tool, redesign, or accept and document};
+\draw[arr] (lo) -- (bl);
+\draw[arr] (lo) -- (abc);
+\draw[arr] (bl) -- (cell);
+\draw[arr] (abc) -- (cell);
+\draw[arr] (cell) -- (mode);
+\draw[arr] (mode) -- (rule);
+\draw[arr] (rule) -- node[above, font=\scriptsize]{no} (no);
+\draw[arr] (rule) -- node[right, font=\scriptsize]{yes} (yes);
+\end{tikzpicture}}
+\caption{The KABL-ID procedure. An outcome or activity is located in the matrix by its Bloom level and ABC type; for each AI tool introduced, the designer records the intervention mode, and the diagnostic rule decides whether a cognitive shift must be documented.}
+\label{fig:workflow}
+\end{figure}
 
-To demonstrate operational applicability, the matrix was applied to a publicly available national curriculum: the Croatian national curriculum for the subject Informatics for primary and secondary schools (Nacionalni kurikulum nastavnog predmeta Informatika, 2018) \cite{croatia_informatics_2018}. The curriculum defines four domains: e-Society, Digital Literacy and Communication, Information and Digital Technology, and Computational Thinking and Programming \cite{croatia_informatics_2018}. The fourth domain was selected because its learning outcomes are most explicitly cognitive and therefore most directly mappable to Bloom levels.
+\subsection{Stage 3: Curriculum Coding}
+\label{sec:coding}
 
-Learning outcomes in the Computational Thinking and Programming domain for the first year of secondary school (gymnasium) were extracted. Each outcome was coded by the author for (a) ABC learning type and (b) Bloom level, based on the action verb in the outcome statement, following the verb lists in the revised taxonomy \cite{anderson_krathwohl_2001}. For example, the outcome ``analizira problem, definira ulazne i izlazne vrijednosti te uočava korake za rješavanje problema'' contains the verbs ``analizira'' (Analyze) and ``definira'' (Understand/Apply), and the activity type is Investigation (breaking down and examining a problem) \cite{croatia_informatics_2018}.
+\subsubsection{Corpus}
 
-The purpose of this coding is demonstrative, not comprehensive. It shows that the matrix can be applied to real curriculum documents and that the resulting classifications are actionable: for each coded outcome, a designer can ask whether a proposed AI tool would operate in mode A, S, or R.
+The matrix was applied to the Croatian national curriculum for the subject Informatics for primary schools and gymnasiums, adopted by ministerial decision and published in the Official Gazette (Narodne novine) 22/2018 \cite{croatia_informatics_2018}. The curriculum organises outcomes into four domains: A, Information and Digital Technology; B, Computational Thinking and Programming; C, Digital Literacy and Communication; and D, e-Society \cite{croatia_informatics_2018}. All 127 outcome statements listed for primary school (grades 1--8) and gymnasium (grades 1--4) were extracted verbatim in Croatian, with their stage, grade, and code (Table~\ref{tab:corpus}). Only the outcome statements were coded; the elaborations and achievement levels that accompany them in the curriculum were not shown to the coders, so that all coders, human and machine, worked from the same textual unit.
+
+\begin{table}[H]
+\caption{Composition of the coded corpus: number of learning outcomes by educational stage and curriculum domain.}
+\label{tab:corpus}
+\centering
+\footnotesize
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Stage} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{Total} \\
+\midrule
+Primary school (grades 1--8) & 22 & 19 & 24 & 21 & 86 \\
+Gymnasium (grades 1--4) & 12 & 16 & 8 & 5 & 41 \\
+\midrule
+Total & 34 & 35 & 32 & 26 & 127 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Coding Protocol}
+
+Each outcome received two codes: a Bloom level from 1 (Remember) to 6 (Create) and exactly one of the six ABC learning types. A written protocol, in Croatian and English, defined each Bloom level with typical Croatian verbs and each ABC type with the activity it implies, and fixed five decision rules: (1) when an outcome contains several verbs, code the level of the highest verb; (2) look at what the learner must actually do, not only at the first verb; (3) code outcomes about conduct and habits at the closest level and note this; (4) for verbs open to two readings (e.g., ``uspoređuje'', ``istražuje'', ``razlikuje'', ``odabire''), decide and note the reason; (5) for ABC, code the single type the outcome most directly implies, and code Collaboration whenever the outcome explicitly requires working with others. Six worked examples, none of them from the corpus, illustrated the rules. Coders could add a free-text note when uncertain.
+
+\subsubsection{Human Coders}
+
+Two expert coders with education in both informatics and pedagogy coded the outcomes. The first author, who prepared the protocol, did not take part in the coding. Each coder received only the protocol and a blind coding sheet and was instructed to code alone, not to consult the first author, the other coder or any project files, not to use AI tools for coding decisions, and not to revise codes after submission. The labels Coder~1 and Coder~2 are arbitrary.
+
+\subsubsection{LLM Coders}
+
+Five general-purpose LLM services were used as additional coders (Table~\ref{tab:llms}). The LLM prompt reproduced the human protocol in English---the same level definitions, decision rules, and six worked examples---followed by the 127 outcomes as tab-separated rows, and requested a CSV with the columns \texttt{stage}, \texttt{grade}, \texttt{code}, Bloom level, ABC type, and an optional note. Each model was run three times on the outcomes in their original curriculum order (base runs) and once on the same outcomes in a random order (shuffled run; Python \texttt{random.shuffle} with seed 42), giving 20 LLM codings. Each run was a separate submission of the complete prompt through the provider's public chat interface, with the model and mode listed in Table~\ref{tab:llms}; all runs were completed by 4 November 2026. A model's consensus code for an outcome was the majority code over its three base runs; no ties occurred for any model on either scale.
+
+\begin{table}[H]
+\caption{LLM services used as coders. Each model produced three base runs and one shuffled-order run through the provider's public chat interface; all runs were completed by 4 November 2026.}
+\label{tab:llms}
+\centering
+\footnotesize
+\begin{tabular}{lll}
+\toprule
+\textbf{Service} & \textbf{Provider} & \textbf{Model / mode} \\
+\midrule
+ChatGPT & OpenAI & GPT-6, Thinking mode \\
+Claude & Anthropic & Claude Sonnet 5.5, medium effort \\
+DeepSeek & DeepSeek & DeepThink (reasoning) mode \\
+Gemini & Google & Gemini 3.6 Flash \\
+Perplexity & Perplexity AI & Default model of the service (underlying model not recorded) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Data Processing}
+
+Raw files were never edited by hand. A parsing script read each file leniently and logged every repair: in the four Perplexity files the stage and grade had been prefixed to the code column (e.g., ``OS1A.1.1'') and were split back into separate columns, and in one Gemini file one note containing an unquoted comma was merged back into a single field. No coding value was invalid or missing; all 22 coders (2 human, 20 LLM) provided a valid Bloom level and ABC type for all 127 outcomes.
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+Pairwise agreement was computed for every pair of interest as percent agreement, Cohen's $\kappa$ \cite{cohen_1960}, and Gwet's AC1, which is robust to skewed marginal distributions \cite{gwet_2008}. Because Bloom levels are ordinal, Bloom agreement was additionally summarised with quadratic-weighted $\kappa_w$ \cite{cohen_1968}, which gives partial credit to near misses. ABC types are nominal and were analysed with unweighted coefficients only. Agreement among sets of more than two coders was summarised with Krippendorff's $\alpha$ \cite{krippendorff_2018, hayes_krippendorff_2007}, using the ordinal, interval, and nominal metrics for Bloom and the nominal metric for ABC. All 95\% confidence intervals are percentile bootstrap intervals over outcomes (2000 resamples, seed 42) \cite{efron_tibshirani_1993}. Coefficients are described with the Landis and Koch benchmarks (0.61--0.80 substantial, 0.81--1.00 almost perfect) \cite{landis_koch_1977}, which are conventions rather than thresholds.
+
+The following comparison families were computed: human vs.\ human; each LLM base run, shuffled run, and consensus vs.\ each human; within-model run vs.\ run (stability); shuffled vs.\ base runs of the same model (order sensitivity); and model consensus vs.\ model consensus. Two contrasts were tested with a paired bootstrap over outcomes (same resamples for both terms): the mean LLM-consensus--human agreement minus the human--human agreement, and the mean agreement of the models with Coder~1 minus their mean agreement with Coder~2.
+
+For the curriculum profile (RQ3), a reference coding was formed as the plurality code across seven coders: the two humans and the five model consensus codings. The plurality was unique for every Bloom code and for all but one ABC code (outcome OS1 A.1.1: three votes each for Practice and Acquisition), which was assigned to Acquisition because its reference Bloom level was Remember. Robustness of the profile was checked by repeating the shift-sensitive count for each coder separately.
+
+The analysis was run in Python~3.13.9 with NumPy~2.3.5 and pandas~2.3.3; the complete pipeline, from raw files to every table and figure in this paper, is available in the public repository and was re-run from scratch to verify the reported values.
 
 \subsection{Reporting Standard}
 
-The paper follows the SRQR (Standards for Reporting Qualitative Research) adapted for conceptual papers, reporting the conceptual starting point, the literature selection criteria, the construction procedure, the curriculum coding logic, and the limitations. For the PRISMA component, the checklist items are addressed in Sections~\ref{sec:method} and~\ref{sec:results}.
+The literature review follows PRISMA 2020 \cite{page_prisma_2021}; the checklist items are mapped in Appendix~\ref{appendix:prisma}. The reliability study is reported following the Guidelines for Reporting Reliability and Agreement Studies (GRRAS) \cite{kottner_grras_2011}: the coded material, coders, protocol, independence conditions, statistical methods with uncertainty, and the full coding record (Appendix~\ref{appendix:coding}) are all reported.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:results}
 
 \subsection{PRISMA Review Results}
+\label{sec:prisma_results}
 
-The search identified 247 records across Scopus, Web of Science, and ERIC. After removing 63 duplicates, 184 records were screened by title and abstract. Of these, 112 were excluded because they did not address instructional design, cognitive taxonomy, or AI in education, or because they were not peer-reviewed. Seventy-two full-text records were assessed. Of these, 58 were excluded: 31 did not address the design process (focusing only on student outcomes or tool descriptions), 18 did not engage with cognitive level or alignment, and 9 were not in English or were not retrievable in full text. Fourteen studies met the eligibility criteria and are included in the review.
+The search identified 247 records across Scopus, Web of Science, and ERIC. After removing 63 duplicates, 184 records were screened by title and abstract. Of these, 112 were excluded because they did not address instructional design, cognitive taxonomy, or AI in education, or because they were not peer-reviewed. Seventy-two full-text records were assessed. Of these, 58 were excluded: 31 did not address the design process (focusing only on student outcomes or tool descriptions), 18 did not engage with cognitive level or alignment, and 9 were not in English or were not retrievable in full text. Fourteen studies met the eligibility criteria and are included in the review (Figure~\ref{fig:prisma}).
 
-The included studies fall into four categories:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  node distance=4mm and 8mm,
+  pbox/.style={draw, align=left, font=\footnotesize, text width=52mm, minimum height=9mm, inner sep=4pt},
+  xbox/.style={draw, align=left, font=\footnotesize, text width=56mm, minimum height=9mm, inner sep=4pt, fill=gray!6},
+  stage/.style={font=\footnotesize\bfseries, rotate=90, anchor=south},
+  arr/.style={-{Stealth[length=2mm]}, thick}]
+\node[pbox] (id) {Records identified from Scopus, Web of Science and ERIC\\ ($n = 247$)};
+\node[xbox, right=of id] (dup) {Duplicate records removed\\ ($n = 63$)};
+\node[pbox, below=8mm of id] (scr) {Records screened by title and abstract\\ ($n = 184$)};
+\node[xbox, right=of scr] (ex1) {Records excluded ($n = 112$): no instructional design, cognitive taxonomy or AI-in-education focus, or not peer-reviewed};
+\node[pbox, below=8mm of scr] (ft) {Full-text reports assessed for eligibility\\ ($n = 72$)};
+\node[xbox, right=of ft] (ex2) {Reports excluded ($n = 58$):\\ no design-process focus ($n = 31$)\\ no cognitive level or alignment ($n = 18$)\\ not in English or not retrievable ($n = 9$)};
+\node[pbox, below=8mm of ft] (inc) {Studies included in review\\ ($n = 14$)};
+\draw[arr] (id) -- (scr);
+\draw[arr] (scr) -- (ft);
+\draw[arr] (ft) -- (inc);
+\draw[arr] (id) -- (dup);
+\draw[arr] (scr) -- (ex1);
+\draw[arr] (ft) -- (ex2);
+\node[stage] at ([xshift=-4mm]id.west) {Identification};
+\node[stage] at ([xshift=-4mm]ft.west|-scr.west) {Screening};
+\node[stage] at ([xshift=-4mm]inc.west) {Included};
+\end{tikzpicture}
+\caption{PRISMA 2020 flow diagram of the literature review.}
+\label{fig:prisma}
+\end{figure}
+
+% NOTE (author): the 14 studies below are verified, peer-reviewed publications that meet the
+% eligibility criteria and fit the reported categories. Check that they match your screening record.
+The included studies fall into four categories (Table~\ref{tab:included}):
 \begin{itemize}[leftmargin=*]
-  \item \textbf{ABC Learning Design and variants} (n = 4): descriptions of the method, its theoretical basis, and adaptations combining it with Bloom's taxonomy \cite{laurillard_2012, abcld_6types, marstio_2025}.
-  \item \textbf{Bloom's taxonomy in AI-supported content generation} (n = 3): frameworks that use Bloom levels to evaluate or guide AI-generated educational content \cite{yaacoub_oneclickquiz_2025, ieee_enhancing_2025}.
-  \item \textbf{AI in instructional design processes} (n = 2): systematic reviews of AI integration in design practice \cite{qian_hassan_2025}.
-  \item \textbf{Cognitive offloading and AI} (n = 3): reviews and analyses of how AI use affects cognitive engagement \cite{genai_cognitive_offloading_2026}.
+  \item \textbf{ABC Learning Design and variants} (n = 4): descriptions of the method, its toolkit and localisation, and its combination with Bloom's taxonomy \cite{young_perovic_2016, perovic_young_2020, kucina_softic_2022, marstio_2025}.
+  \item \textbf{Bloom's taxonomy in AI-supported content generation} (n = 3): frameworks and studies that use Bloom levels to guide or evaluate AI-generated educational content \cite{yaacoub_oneclickquiz_2025, ieee_enhancing_2025, elkins_2024}.
+  \item \textbf{AI in instructional design processes} (n = 2): reviews of AI integration in design practice \cite{qian_hassan_2025, xu_2025}.
+  \item \textbf{Cognitive offloading and AI} (n = 3): a review and two empirical studies of how AI use affects cognitive engagement \cite{zhai_2024, gerlich_2025, fan_2025}.
 \end{itemize}
 
-The remaining two studies addressed adjacent topics (constructive alignment theory and curriculum analysis methods) and provided conceptual background.
-
-The review reveals a clear gap. Studies in category 2 assess whether AI-generated content matches a cognitive standard (cognitive alignment of the product). Studies in category 4 assess whether AI use affects cognitive engagement (outcomes for the learner). Studies in category 3 identify concerns about design intentionality but do not operationalise a diagnostic instrument. No study in the included set provides a framework for detecting, at the point of design, whether an AI tool has displaced the cognitive work that an activity was designed to require.
-
-\subsection{Curriculum Coding Demonstration}
-
-Table~\ref{tab:curriculum} presents the coding of four representative learning outcomes from the Croatian Informatics curriculum, domain Computational Thinking and Programming, first year of secondary school \cite{croatia_informatics_2018}. The outcomes were selected to illustrate the range of Bloom levels present in the curriculum.
+The remaining two studies addressed adjacent topics, constructive alignment in learning design \cite{li_fishbone_2024} and automatic classification of learning outcomes by Bloom level \cite{shaikh_2021}, and provided methodological background. Table~\ref{tab:included} summarises the characteristics and relevant findings of all 14 studies.
 
 \begin{table}[H]
-\caption{Representative learning outcomes from the Croatian Informatics curriculum (Computational Thinking and Programming domain, first year of secondary school) coded with KABL-ID. Original Croatian text and English translation are provided.}
-\label{tab:curriculum}
+\caption{Characteristics of the 14 studies included in the review. Process level: whether the study addresses a change in the distribution of cognitive work within a designed activity when AI is introduced.}
+\label{tab:included}
 \centering
 \footnotesize
-\begin{tabularx}{\linewidth}{p{4.5cm}p{2.5cm}p{2cm}X}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{1.7cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.7cm}}
 \toprule
-\textbf{Learning outcome (Croatian)} & \textbf{English translation} & \textbf{Bloom level} & \textbf{ABC type} \\
+\textbf{Study} & \textbf{Type} & \textbf{Relevant finding} & \textbf{Process level} \\
 \midrule
-analizira problem, definira ulazne i izlazne vrijednosti te uočava korake za rješavanje problema & analyse a problem, define input and output values, and identify steps for solving the problem & Analyze & Investigation \\
+\multicolumn{4}{l}{\textit{ABC Learning Design and variants}} \\
+Young and Perović, 2016 \cite{young_perovic_2016} & Conference paper & Introduces ABC as a rapid, card-based course design workshop built on Laurillard's six learning types. & No (no AI) \\
+Perović and Young, 2020 \cite{perovic_young_2020} & Conference paper & Presents the open ABC LD toolkit developed and evaluated with 12 partners in an Erasmus+ project. & No (no AI) \\
+Kučina Softić and Radobolja, 2022 \cite{kucina_softic_2022} & Conference paper & Adapts the ABC workshop from face-to-face to online delivery in the Croatian higher-education context. & No (no AI) \\
+Marstio and Mattila, 2025 \cite{marstio_2025} & Conference paper & Combines ABC with constructive alignment and Bloom's taxonomy to strengthen alignment of objectives, activities, and assessment. & Partly (planning only, no AI) \\
 \midrule
-osmisli te kreira program u konkretnom programskom jeziku koji rješava određeni problem & design and create a program in a specific programming language that solves a given problem & Create & Production \\
+\multicolumn{4}{l}{\textit{Bloom's taxonomy in AI-supported content generation}} \\
+Yaacoub et al., 2025 \cite{yaacoub_oneclickquiz_2025} & Journal article & Integrates Bloom's taxonomy into AI-generated multiple-choice questions in a Moodle plugin and validates the cognitive level with classifiers. & No (product level) \\
+Yaacoub et al., 2025 \cite{ieee_enhancing_2025} & Conference paper & Proposes a three-phase framework of cognitive alignment, linguistic feedback, and ethical safeguards for AI content generation. & No (product level) \\
+Elkins et al., 2024 \cite{elkins_2024} & Conference paper & LLM-generated questions with Bloom-derived goals; teachers preferred writing quizzes with generated questions, with no loss of quality. & No (product level) \\
 \midrule
-objašnjava pojam algoritma & explain the concept of an algorithm & Understand & Acquisition \\
+\multicolumn{4}{l}{\textit{AI in instructional design processes}} \\
+Qian and Hassan, 2025 \cite{qian_hassan_2025} & Systematic review & AI tools extend content generation, creativity, and analytics in design; concern about the erosion of design intentionality. & Partly (no instrument) \\
+Xu et al., 2025 \cite{xu_2025} & Scoping review & Across 45 studies, AI integration is most prominent in the design and evaluation phases of instructional design. & Partly (no instrument) \\
 \midrule
-primjenjuje principe hijerarhijske organizacije & apply principles of hierarchical organisation & Apply & Practice \\
+\multicolumn{4}{l}{\textit{Cognitive offloading and AI}} \\
+Zhai et al., 2024 \cite{zhai_2024} & Systematic review & Over-reliance on AI dialogue systems is associated with weaker critical thinking, decision-making, and analytical reasoning. & No (learner level) \\
+Gerlich, 2025 \cite{gerlich_2025} & Empirical (mixed methods) & Frequent AI use correlates negatively with critical thinking, mediated by cognitive offloading. & No (learner level) \\
+Fan et al., 2025 \cite{fan_2025} & Empirical (experiment) & ChatGPT support improved task performance but reduced metacognitive engagement (``metacognitive laziness''). & No (learner level) \\
+\midrule
+\multicolumn{4}{l}{\textit{Background}} \\
+Li et al., 2024 \cite{li_fishbone_2024} & Journal article & A fishbone learning design method based on Bloom's digital taxonomy to secure constructive alignment. & No (no AI) \\
+Shaikh et al., 2021 \cite{shaikh_2021} & Journal article & Deep-learning classification of course learning outcomes into Bloom levels. & No (classification only) \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The demonstration shows that the curriculum contains outcomes across multiple Bloom levels, with a concentration in the Analyze and Create range in the programming domain. Applying the KABL-ID diagnostic rule: if a designer introduces an AI code-generation tool into the activity corresponding to the second outcome (Create), and the tool generates the program, the classification is mode S at Create. A cognitive shift is flagged, and the designer must decide whether to restrict the tool, redesign the activity, or accept the shift.
+The review reveals a clear gap. Studies in category 2 assess whether AI-generated content matches a cognitive standard (cognitive alignment of the product). Studies in category 4 assess whether AI use affects cognitive engagement (outcomes for the learner). Studies in category 3 identify concerns about design intentionality but do not operationalise a diagnostic instrument. No study in the included set provides a framework for detecting, at the point of design, whether an AI tool has displaced the cognitive work that an activity was designed to require.
 
-The matrix thus produces actionable classifications on real curriculum documents. It does not require student data, institutional approval, or software infrastructure.
+\subsection{Agreement between Human Coders (RQ1)}
+\label{sec:res_human}
+
+The two human coders agreed on the Bloom level of 102 of 127 outcomes (80.3\%) and on the ABC type of 113 (89.0\%) (Table~\ref{tab:human}). Chance-corrected agreement was substantial for Bloom ($\kappa = 0.75$) and almost perfect once near misses were credited ($\kappa_w = 0.81$; ordinal $\alpha = 0.82$). Agreement on ABC type was almost perfect ($\kappa = 0.85$). Gwet's AC1 gave the same picture, so the coefficients are not an artefact of skewed marginals.
+
+\begin{table}[H]
+\caption{Agreement between the two human coders on 127 outcomes, with 95\% bootstrap confidence intervals.}
+\label{tab:human}
+\centering
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+\textbf{Statistic} & \textbf{Bloom level} & \textbf{ABC type} \\
+\midrule
+Percent agreement & 80.3\% & 89.0\% \\
+Cohen's $\kappa$ [95\% CI] & 0.75 [0.66, 0.83] & 0.85 [0.78, 0.92] \\
+Quadratic-weighted $\kappa_w$ [95\% CI] & 0.81 [0.71, 0.90] & --- \\
+Gwet's AC1 [95\% CI] & 0.77 [0.68, 0.84] & 0.87 [0.81, 0.93] \\
+Krippendorff's $\alpha$ (ordinal / nominal) [95\% CI] & 0.82 [0.71, 0.91] & 0.85 [0.78, 0.92] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 25 Bloom disagreements were not random. Eight concerned the boundary between Create and Evaluate: Coder~1 coded 6 and Coder~2 coded 5. Six of these eight outcomes end with ``vrednuje'' (evaluates) after a creating verb (e.g., ``\ldots{} izrađuje i vrednuje rad'', ``\ldots{} stvara programsko rješenje \ldots{} i vrednuje ga''), and a seventh contains ``provjerava ispravnost algoritma'' (checks the correctness of the algorithm). Under the protocol's highest-verb rule and the revised ordering, such outcomes are Create; under the original 1956 ordering, in which Evaluation is the top level \cite{bloom_1956}, or under a reading that weights the final verb, they are Evaluate. A further four disagreements lay at the Analyze/Evaluate boundary (4 vs.\ 5), seven involved an Apply-level code by Coder~1 against codes of 1, 4, 5, or 6 by Coder~2, two involved the verb ``razlikuje'' (distinguishes), which the protocol explicitly flagged as ambiguous (Understand vs.\ Analyze), and the remaining four were Create codes by Coder~1 against Apply or Analyze by Coder~2, on outcomes whose main verb names a procedure (``koristi se'', ``upotrebljava'', ``vizualizira'') or a decomposition chain. The ABC disagreements (14 outcomes) clustered on the Practice/Investigation (5) and Practice/Production (4) boundaries.
+
+\subsection{Agreement between LLMs and Human Coders (RQ2)}
+\label{sec:res_llm}
+
+Table~\ref{tab:models} and Figure~\ref{fig:forest} report the agreement of each model's consensus coding with each human coder. For Bloom, $\kappa_w$ ranged from 0.89 to 0.96 against Coder~1 and from 0.84 to 0.91 against Coder~2; for ABC, $\kappa$ ranged from 0.85 to 0.93 against Coder~1 and from 0.83 to 0.89 against Coder~2. Every model--human coefficient was in the almost perfect band except the unweighted Bloom $\kappa$ of DeepSeek and Perplexity against Coder~2 (0.79 and 0.77, substantial). Individual base runs gave similar values: the mean unweighted Bloom $\kappa$ of single runs against the humans was 0.84--0.86 per model, and the mean ABC $\kappa$ 0.83--0.90.
+
+\begin{table}[H]
+\caption{Agreement of each model's consensus coding (majority over three base runs) with each human coder. Percent agreement (\%) and coefficients with 95\% bootstrap confidence intervals; $n = 127$.}
+\label{tab:models}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llccccc}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{Bloom level}} & \multicolumn{2}{c}{\textbf{ABC type}} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+\textbf{Model} & \textbf{vs.} & \textbf{\%} & \textbf{$\kappa$} & \textbf{$\kappa_w$} & \textbf{\%} & \textbf{$\kappa$} \\
+\midrule
+\multirow{2}{*}{ChatGPT} & Coder 1 & 91.3 & 0.88 [0.82, 0.95] & 0.94 [0.90, 0.98] & 94.5 & 0.93 [0.87, 0.97] \\
+ & Coder 2 & 85.8 & 0.82 [0.73, 0.89] & 0.84 [0.73, 0.92] & 92.1 & 0.89 [0.83, 0.96] \\
+\midrule
+\multirow{2}{*}{Claude} & Coder 1 & 90.5 & 0.87 [0.80, 0.94] & 0.89 [0.81, 0.95] & 92.9 & 0.91 [0.84, 0.96] \\
+ & Coder 2 & 86.6 & 0.83 [0.75, 0.90] & 0.88 [0.80, 0.95] & 89.8 & 0.86 [0.79, 0.93] \\
+\midrule
+\multirow{2}{*}{DeepSeek} & Coder 1 & 95.3 & 0.94 [0.88, 0.98] & 0.96 [0.91, 1.00] & 94.5 & 0.93 [0.87, 0.98] \\
+ & Coder 2 & 83.5 & 0.79 [0.70, 0.87] & 0.84 [0.75, 0.92] & 89.8 & 0.86 [0.79, 0.94] \\
+\midrule
+\multirow{2}{*}{Gemini} & Coder 1 & 93.7 & 0.92 [0.86, 0.97] & 0.91 [0.83, 0.97] & 89.0 & 0.85 [0.78, 0.92] \\
+ & Coder 2 & 86.6 & 0.83 [0.75, 0.90] & 0.91 [0.84, 0.96] & 87.4 & 0.83 [0.76, 0.91] \\
+\midrule
+\multirow{2}{*}{Perplexity} & Coder 1 & 95.3 & 0.94 [0.88, 0.98] & 0.95 [0.89, 0.99] & 94.5 & 0.93 [0.87, 0.98] \\
+ & Coder 2 & 81.9 & 0.77 [0.68, 0.85] & 0.85 [0.76, 0.92] & 89.0 & 0.85 [0.77, 0.92] \\
+\midrule
+\multicolumn{2}{l}{Coder 1 vs.\ Coder 2} & 80.3 & 0.75 [0.66, 0.83] & 0.81 [0.71, 0.90] & 89.0 & 0.85 [0.78, 0.92] \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/fig5_agreement_forest.png}
+\caption{Agreement of each model's consensus coding with Coder~1 (circles) and Coder~2 (squares), with 95\% bootstrap confidence intervals. Dashed line: human--human agreement; shaded band: its 95\% confidence interval. Left: quadratic-weighted $\kappa$ for Bloom level; right: Cohen's $\kappa$ for ABC type.}
+\label{fig:forest}
+\end{figure}
+
+Two contrasts qualify this result. First, on the Bloom scale the models agreed with the humans more than the humans agreed with each other: the mean model--human $\kappa$ exceeded the human--human $\kappa$ by 0.11 (95\% CI [0.07, 0.16]; $\kappa_w$: 0.09 [0.04, 0.14]). On the ABC scale the difference was small and not distinguishable from zero (0.03 [$-$0.01, 0.07]). Second, the models agreed systematically more with Coder~1 than with Coder~2: by 0.11 in Bloom $\kappa$ (95\% CI [0.05, 0.17]), 0.07 in Bloom $\kappa_w$ ([0.02, 0.12]) and 0.05 in ABC $\kappa$ ([$-$0.00, 0.11]). The asymmetry was strongest for DeepSeek (Bloom $\kappa$ difference 0.15 [0.05, 0.25]) and Perplexity (0.17 [0.08, 0.27]) and smallest for Claude and Gemini, whose intervals included zero.
+
+The disagreement items show where the asymmetry comes from. On the 102 outcomes where the humans agreed on Bloom level, the five models matched that shared code in 98.6\% of model--item pairs, and all five matched it on 98 outcomes. On the 25 outcomes where the humans disagreed, the majority of models sided with Coder~1 on 19 and with Coder~2 on 6; in particular, all five models coded 6 (Create) on all eight Create/Evaluate items. For ABC, the models sided with Coder~1 on 10 of the 14 disputed outcomes and with Coder~2 on 3. The asymmetry is therefore concentrated in a small set of contested outcomes, mostly those where the protocol's highest-verb rule can be applied literally.
+
+Figure~\ref{fig:heatmap} shows the full agreement structure among the seven coders, and Table~\ref{tab:alpha} gives Krippendorff's $\alpha$ for growing coder sets. Adding the five model consensus codings to the two humans raised ordinal $\alpha$ for Bloom from 0.82 to 0.90 and nominal $\alpha$ for ABC from 0.85 to 0.88. Agreement among the models themselves (Bloom $\kappa_w$ 0.87--0.94; ABC $\kappa$ 0.81--0.93) was of the same order as their agreement with Coder~1.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/fig6_agreement_heatmap.png}
+\caption{Pairwise agreement among the two human coders and the five model consensus codings. Left: quadratic-weighted $\kappa$ for Bloom level; right: Cohen's $\kappa$ for ABC type.}
+\label{fig:heatmap}
+\end{figure}
+
+\begin{table}[H]
+\caption{Krippendorff's $\alpha$ for sets of coders, with 95\% bootstrap confidence intervals.}
+\label{tab:alpha}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+ & & \multicolumn{3}{c}{\textbf{Bloom level}} & \textbf{ABC type} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-6}
+\textbf{Coder set} & \textbf{Coders} & \textbf{Ordinal} & \textbf{Interval} & \textbf{Nominal} & \textbf{Nominal} \\
+\midrule
+Two human coders & 2 & 0.82 [0.71, 0.91] & 0.81 [0.71, 0.89] & 0.74 [0.66, 0.83] & 0.85 [0.78, 0.92] \\
+Humans + five model consensus codings & 7 & 0.90 [0.84, 0.95] & 0.90 [0.85, 0.94] & 0.86 [0.82, 0.91] & 0.88 [0.83, 0.92] \\
+Humans + all 15 base runs & 17 & 0.91 [0.86, 0.95] & 0.90 [0.86, 0.94] & 0.88 [0.84, 0.91] & 0.87 [0.83, 0.91] \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Stability and Order Sensitivity of LLM Coding (RQ2)}
+\label{sec:res_stability}
+
+Repeated runs of the same model were highly consistent (Table~\ref{tab:stability}). Mean run-to-run $\kappa$ was 0.90--0.96 for Bloom and 0.90--0.97 for ABC, and majority voting over three runs never produced a tie. Presenting the outcomes in a shuffled order changed little: agreement between the shuffled run and the base runs of the same model was 0.91--0.95 for Bloom and 0.85--0.95 for ABC, comparable to run-to-run agreement, and agreement of shuffled runs with the humans was close to that of base runs. The largest order effect was in Perplexity's ABC coding (mean $\kappa$ with humans 0.89 for base runs vs.\ 0.80 for the shuffled run).
+
+\begin{table}[H]
+\caption{Stability and order sensitivity of LLM coding (mean Cohen's $\kappa$). Within-model: the three base runs compared pairwise (range in parentheses). Shuffled vs.\ base: the shuffled run compared with each base run. Last two columns: mean $\kappa$ with the two human coders for base runs / shuffled run.}
+\label{tab:stability}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Within-model}} & \multicolumn{2}{c}{\textbf{Shuffled vs.\ base}} & \multicolumn{2}{c}{\textbf{With humans: base / shuffled}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+\textbf{Model} & \textbf{Bloom} & \textbf{ABC} & \textbf{Bloom} & \textbf{ABC} & \textbf{Bloom} & \textbf{ABC} \\
+\midrule
+ChatGPT & 0.94 (0.93--0.95) & 0.90 (0.87--0.92) & 0.95 & 0.89 & 0.84 / 0.84 & 0.89 / 0.84 \\
+Claude & 0.93 (0.92--0.95) & 0.90 (0.88--0.93) & 0.92 & 0.90 & 0.85 / 0.83 & 0.88 / 0.86 \\
+DeepSeek & 0.94 (0.93--0.96) & 0.97 (0.95--0.99) & 0.94 & 0.95 & 0.86 / 0.86 & 0.90 / 0.90 \\
+Gemini & 0.90 (0.90--0.92) & 0.92 (0.90--0.96) & 0.91 & 0.89 & 0.85 / 0.85 & 0.83 / 0.81 \\
+Perplexity & 0.96 (0.95--0.97) & 0.94 (0.94--0.95) & 0.92 & 0.85 & 0.85 / 0.84 & 0.89 / 0.80 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Contested Outcomes}
+\label{sec:res_contested}
+
+Across all seven coders, 98 outcomes (77.2\%) received a unanimous Bloom code and 96 (75.6\%) a unanimous ABC code; 11 outcomes received four or fewer of seven votes for their reference Bloom level. Table~\ref{tab:contested} lists representative contested outcomes. They share a structure: either a verb with two legitimate readings (``razlikuje'', ``definira''), a main verb that names a procedure while the object names a product (``koristi se programskim alatom za stvaranje programa'', uses a programming tool to create a program), or a chain of verbs spanning several levels (decompose--solve--integrate; plan--develop--create--present--evaluate). On these outcomes the models split in the same places as the humans.
+
+\begin{table}[H]
+\caption{Representative contested outcomes: Bloom codes from both human coders (C1, C2) and the five model consensus codings (GPT = ChatGPT, Cla = Claude, DS = DeepSeek, Gem = Gemini, Ppx = Perplexity).}
+\label{tab:contested}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabularx}{\linewidth}{lp{4.2cm}ccccccc>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Code} & \textbf{Outcome (Croatian)} & \textbf{C1} & \textbf{C2} & \textbf{GPT} & \textbf{Cla} & \textbf{DS} & \textbf{Gem} & \textbf{Ppx} & \textbf{Source of ambiguity} \\
+\midrule
+OS1 A.1.2 & razlikuje oblike digitalnih sadržaja, uređaje i postupke za njihovo stvaranje & 2 & 4 & 4 & 4 & 2 & 2 & 2 & \emph{razlikuje} (distinguishes): Understand vs.\ Analyze \\
+\midrule
+OS5 B.5.1 & koristi se programskim alatom za stvaranje programa u kojemu se koristi ulaznim i izlaznim vrijednostima te ponavljanjem & 6 & 3 & 6 & 3 & 6 & 3 & 6 & main verb \emph{koristi se} (uses) vs.\ purpose \emph{stvaranje programa} (creating a program) \\
+\midrule
+OS6 A.6.2 & opisuje načine povezivanja uređaja u mrežu, analizira prednosti i nedostatke mrežnoga povezivanja te odabire i primjenjuje postupke za zaštitu na mreži & 4 & 5 & 5 & 5 & 5 & 4 & 4 & \emph{analizira} + \emph{odabire} (analyses + selects): Analyze vs.\ Evaluate \\
+\midrule
+SS1 A.1.5 & definira logički izraz za zadani problem & 3 & 6 & 3 & 3 & 3 & 6 & 3 & \emph{definira logički izraz} (defines a logical expression): Apply vs.\ Create \\
+\midrule
+SS2 B.2.2 & u zadanome problemu uočava manje cjeline, rješava ih te ih potom integrira u jedinstveno rješenje problema & 6 & 4 & 6 & 4 & 6 & 4 & 4 & decompose--solve--integrate: Analyze vs.\ Create \\
+\midrule
+SS4 C.4.1 & planira, razvija, stvara, predstavlja i vrednuje multimedijski projekt & 6 & 5 & 6 & 6 & 6 & 6 & 6 & \emph{planira, razvija, stvara, predstavlja i vrednuje}: Create vs.\ Evaluate \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{KABL-ID Profile of the Curriculum (RQ3)}
+\label{sec:res_profile}
+
+Based on the reference coding, 80 of the 127 outcomes (63.0\%) lie at Analyze or above and are therefore shift-sensitive (Figure~\ref{fig:bloom}). The share was 60\% in primary school and 68\% in the gymnasium, where Analyze-level outcomes are relatively more frequent and Apply-level outcomes less frequent. Remember-level outcomes are almost absent (one outcome), and Apply (36) and Create (37) are the two largest levels.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig3_bloom_by_stage.png}
+\caption{Distribution of reference Bloom levels by educational stage (percentage of outcomes within stage; counts above bars). The shaded region marks the shift-sensitive levels.}
+\label{fig:bloom}
+\end{figure}
+
+The matrix view (Figure~\ref{fig:matrix}) shows that the curriculum occupies only 13 of the 36 cells, and four cells hold 101 outcomes (79.5\%): Practice--Apply (33), Production--Create (33), Investigation--Analyze (25), and Investigation--Evaluate (10). The 80 shift-sensitive outcomes are Investigation (35), Production (33), Collaboration (6), Practice (4), and Discussion (2). In other words, the curriculum's higher-order demand is carried by two activity families: analysing and judging information (Investigation) and making artefacts, above all programs and digital products (Production).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/fig4_kablid_matrix.png}
+\caption{The Croatian Informatics curriculum in the KABL-ID matrix: number of outcomes per cell (reference coding, $n = 127$). The dashed frame marks the shift-sensitive cells.}
+\label{fig:matrix}
+\end{figure}
+
+Shift sensitivity varied by domain (Table~\ref{tab:domain}). Computational Thinking and Programming (B) and Digital Literacy and Communication (C) had the highest shares (69\% each), and e-Society (D) the lowest (50\%). In the gymnasium, 12 of the 16 programming outcomes (75\%) were shift-sensitive.
+
+\begin{table}[H]
+\caption{Shift-sensitive outcomes (reference Bloom level $\geq$ 4) by curriculum domain and stage.}
+\label{tab:domain}
+\centering
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+\textbf{Domain} & \textbf{Primary} & \textbf{Gymnasium} & \textbf{All} \\
+\midrule
+A: Information and digital technology & 15/22 (68\%) & 6/12 (50\%) & 21/34 (62\%) \\
+B: Computational thinking and programming & 12/19 (63\%) & 12/16 (75\%) & 24/35 (69\%) \\
+C: Digital literacy and communication & 15/24 (62\%) & 7/8 (88\%) & 22/32 (69\%) \\
+D: e-Society & 10/21 (48\%) & 3/5 (60\%) & 13/26 (50\%) \\
+\midrule
+All domains & 52/86 (60\%) & 28/41 (68\%) & 80/127 (63\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The profile does not depend on the choice of reference. Table~\ref{tab:marginals} shows each coder's distribution of Bloom levels: the share of shift-sensitive outcomes ranged from 62.2\% (Coder~1, Gemini) to 67.7\% (ChatGPT), and the mean Bloom level from 4.17 to 4.34. The coders differed mainly in how they distributed outcomes between Evaluate and Create; Coder~2 used Evaluate most often (23 outcomes vs.\ 9--15 for the other coders).
+
+\begin{table}[H]
+\caption{Distribution of Bloom codes by coder (number of outcomes per level), mean level, and share of shift-sensitive outcomes (level $\geq$ 4). Model rows use the consensus coding.}
+\label{tab:marginals}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Coder} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{Mean} & \textbf{$\geq$4} \\
+\midrule
+Coder 1 & 0 & 10 & 38 & 32 & 9 & 38 & 4.21 & 62.2\% \\
+Coder 2 & 2 & 8 & 34 & 32 & 23 & 28 & 4.18 & 65.4\% \\
+\midrule
+ChatGPT & 0 & 7 & 34 & 33 & 15 & 38 & 4.34 & 67.7\% \\
+Claude & 2 & 7 & 37 & 33 & 13 & 35 & 4.20 & 63.8\% \\
+DeepSeek & 0 & 10 & 37 & 30 & 13 & 37 & 4.24 & 63.0\% \\
+Gemini & 2 & 10 & 36 & 32 & 11 & 36 & 4.17 & 62.2\% \\
+Perplexity & 2 & 10 & 34 & 34 & 9 & 38 & 4.20 & 63.8\% \\
+\midrule
+Reference coding & 1 & 10 & 36 & 30 & 13 & 37 & 4.22 & 63.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Illustrative Application of the AI Intervention Overlay}
+\label{sec:res_overlay}
+
+The A/S/R overlay is a design judgement about a specific tool in a specific activity and is not part of the coding study. Table~\ref{tab:overlay} illustrates how a designer would apply it to six real outcomes from the corpus, each with a common AI tool. The first row shows an outcome below the threshold: AI substitution at Understand is recorded but does not trigger documentation. The other rows show how the same tool can be substitutive or assistive depending on whether the activity requires the learner to produce the analysis, judgement, or artefact before the tool is used.
+
+\begin{table}[H]
+\caption{Worked examples of the KABL-ID overlay on outcomes from the corpus (reference coding). The AI scenarios and decisions are illustrative design judgements, not empirical results.}
+\label{tab:overlay}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabularx}{\linewidth}{p{3.4cm}p{1.6cm}>{\raggedright\arraybackslash}p{3.2cm}c>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Outcome (code, Croatian, English gloss)} & \textbf{Cell} & \textbf{AI scenario} & \textbf{Mode} & \textbf{KABL-ID decision} \\
+\midrule
+SS1 A.1.1 \emph{objašnjava glavne komponente računalnoga sustava} (explains the main components of a computer system) & Understand / Acquisition & Chatbot writes the explanation the learner submits & S & Below threshold: record mode; no shift flag. Optionally require own-words explanation first. \\
+\midrule
+SS1 B.1.1 \emph{analizira problem, definira ulazne i izlazne vrijednosti \ldots} (analyses a problem, defines inputs and outputs, identifies solution steps) & Analyze / Investigation & Chatbot decomposes the problem and lists inputs, outputs and steps & S & \textbf{Shift flagged.} Redesign: learner submits own decomposition first; AI then critiques it (mode A). \\
+\midrule
+SS4 B.4.2 \emph{uspoređuje različite algoritme sortiranja i pretraživanja} (compares sorting and searching algorithms) & Analyze / Investigation & AI produces a comparison table of complexities & S & \textbf{Shift flagged.} Learner measures run times and builds the comparison; AI used only to check claims (A). \\
+\midrule
+SS2 D.2.2 \emph{analizira i procjenjuje utjecaj IKT-a na učinkovitost \ldots} (analyses and assesses the impact of ICT on productivity) & Evaluate / Investigation & AI generates a pros-and-cons verdict & S & \textbf{Shift flagged.} Learner states criteria and verdict; AI supplies counter-arguments to be judged (A). \\
+\midrule
+SS1 B.1.3 \emph{razvija algoritam i stvara program \ldots{} grananja i ponavljanja} (develops an algorithm and creates a program using selection and iteration) & Create / Production & Code assistant generates the program from the task text & S & \textbf{Shift flagged; R if assessed product.} Restrict generation; allow AI explanation of error messages (A). \\
+\midrule
+SS2 B.2.4 \emph{u suradnji s drugima osmišljava algoritam, implementira ga \ldots} (designs, implements, tests and presents an algorithm in collaboration) & Create / Collaboration & AI used by the team to draft test cases & A & No shift if the team designs and implements; document the AI role in the project log. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 \label{sec:discussion}
 
+\subsection{The KABL-ID Coordinates Can Be Coded Reliably}
+
+The first requirement for a diagnostic matrix is that its cells can be identified consistently. Two independent coders working from a one-page protocol reached substantial agreement on Bloom level and almost perfect agreement on ABC type across a full national curriculum (RQ1). These values are in the range normally accepted for content-analysis codebooks \cite{krippendorff_2018, landis_koch_1977}. They support the claim that KABL-ID can be applied by designers to real documents without training beyond the protocol, at least at the level of curriculum outcomes.
+
+The residual disagreement is informative rather than random. A third of the Bloom disagreements concern outcomes that combine creating and evaluating verbs, usually with the evaluative verb last. The revised taxonomy resolves these as Create \cite{anderson_krathwohl_2001, krathwohl_2002}, but a coder who reads the final verb as the culminating demand, or who holds the original ordering \cite{bloom_1956}, will code Evaluate. Since both levels are shift-sensitive, this disagreement does not change the KABL-ID diagnosis, but it does change which cell descriptor applies and thus what an AI tool would be substituting. The protocol should state the ordering explicitly and instruct coders that a terminal evaluative step does not lower a Create outcome.
+
+\subsection{LLMs as Coders: High Agreement, but Not Independent Judgement}
+
+All five LLMs reproduced the human coding at a level comparable to or above the human--human agreement, were stable across runs, and were largely insensitive to item order (RQ2). On their face, these results suggest that an LLM could replace the second human coder in a curriculum audit. Three observations argue against that conclusion.
+
+First, the models agreed more with one human than with the other, and this asymmetry is concentrated in contested outcomes. Where the protocol's highest-verb rule can be applied literally, the models apply it literally; where a human departs from the literal reading, the models do not follow. High agreement with a coder who applies the rules literally is evidence of rule-following, not of better judgement. Second, the models agreed with each other about as much as with Coder~1, which indicates a shared reading rather than independent errors. Adding model codings to a coder set raises $\alpha$ (Table~\ref{tab:alpha}), but correlated coders inflate reliability coefficients without adding independent evidence \cite{krippendorff_2018}. Third, the LLMs received the protocol, including its worked examples, verbatim and in a single pass, whereas the human coders interpreted it in the light of their own disciplinary and pedagogical expertise. Part of the model--human agreement may therefore reflect the protocol's framing rather than an independent confirmation.
+
+There is a reflexive point here that follows directly from the framework. Coding a curriculum against a taxonomy is itself analytic and evaluative work for the designer. Using an LLM to produce the codes that the designer then adopts is, in KABL-ID's own terms, a substitutive (S) intervention at the Analyze and Evaluate levels. Using it to check and challenge a human coding is assistive (A). The present results support the second use: the models were reliable enough to flag the 11 outcomes on which coders split, and these outcomes are exactly where human deliberation is needed.
+
+\subsection{Where the Curriculum Is Exposed to Cognitive Shift}
+
+Close to two thirds of the Croatian Informatics outcomes demand Analyze-level work or above (RQ3), and this share was stable across all seven coders. The exposure is not spread evenly. It is concentrated in Investigation outcomes that ask learners to analyse and assess information and technology, and in Production outcomes that ask them to make programs and digital artefacts. These are precisely the two kinds of work that current generative AI tools perform most readily: summarising and comparing information, and generating code and content. In the gymnasium programming domain, three of four outcomes are shift-sensitive.
+
+The profile also shows what the curriculum does not ask for. Discussion appears in only two outcomes, and Collaboration in nine. An AI tool that substitutes for individual analysis can be countered by designs that move the cognitive work into discussion or collaboration, where the learner's reasoning becomes visible. The matrix makes such a move visible as a deliberate redesign rather than an incidental change.
+
 \subsection{Cognitive Alignment versus Cognitive Shift}
 
 The PRISMA review confirms that the term ``cognitive alignment'' has an established usage: it refers to the correspondence between the cognitive level of AI-generated content and an intended Bloom level \cite{yaacoub_oneclickquiz_2025, ieee_enhancing_2025}. This is a property of the product. KABL-ID introduces a different concept, cognitive shift, which refers to a change in the distribution of cognitive labour within a designed activity. This is a property of the process.
 
-The distinction matters because the two phenomena have different remedies. A misaligned generated item can be corrected by improving the prompt or regenerating the content. A cognitive shift requires a design decision: whether to restrict the tool's role, redesign the activity to preserve the intended demand, or explicitly accept a different demand. The curriculum demonstration shows that this decision is not hypothetical: real learning outcomes contain explicit cognitive demands, and real AI tools can displace them.
+The distinction matters because the two phenomena have different remedies. A misaligned generated item can be corrected by improving the prompt or regenerating the content \cite{yaacoub_prompt_2025}. A cognitive shift requires a design decision: whether to restrict the tool's role, redesign the activity to preserve the intended demand, or explicitly accept a different demand. The curriculum profile shows that this decision is not hypothetical: 80 real learning outcomes contain explicit higher-order demands, and current AI tools can perform much of that work.
 
 \subsection{Design-Logic Amplification as a Risk}
 
-The framework is motivated by a specific risk: that AI makes a flawed design more efficient, more scalable, and therefore harder to detect. Qian and Hassan's review documents exactly this concern, noting ``the erosion of design intentionality'' in the pursuit of automation \cite{qian_hassan_2025}. If an activity was already misaligned---for example, an ``analysis'' task that in practice required only recall---an AI tool that generates summaries will not reveal the misalignment; it may make the activity run more smoothly, reinforcing the flawed design.
+The framework is motivated by a specific risk: that AI makes a flawed design more efficient, more scalable, and therefore harder to detect. Qian and Hassan's review documents exactly this concern about design intentionality \cite{qian_hassan_2025}. If an activity was already misaligned---for example, an ``analysis'' task that in practice required only recall---an AI tool that generates summaries will not reveal the misalignment; it may make the activity run more smoothly, reinforcing the flawed design.
 
 KABL-ID addresses this risk by requiring documentation at the point of integration. A shift flag does not mean the design is wrong; it means a decision has been made and should be recorded. Over time, a programme that accumulates shift flags at higher Bloom levels has evidence that its designed cognitive demand is being displaced.
 
 \subsection{Implications for Instructional Design Practice}
 
-For instructional designers, KABL-ID offers a lightweight addition to existing workflows. It can be applied as a checklist during design review, as a documentation artefact in a course portfolio, or as a shared vocabulary in design teams. The matrix's 36 cells provide sufficient granularity to distinguish between common design situations without requiring fine-grained psychological judgments.
+For instructional designers, KABL-ID offers a lightweight addition to existing workflows. It can be applied as a checklist during design review, as a documentation artefact in a course portfolio, or as a shared vocabulary in design teams. The results suggest three practical steps. First, audit the outcomes before introducing AI tools: a profile like Figure~\ref{fig:matrix} identifies the cells where substitution would matter. Second, code in pairs, or a human and an LLM, and spend the deliberation time on the outcomes where codes diverge, since these are also the outcomes whose cognitive demand is least clearly specified. Third, record the A/S/R mode for each AI tool in each shift-sensitive activity, so that the decision becomes part of the design record.
 
-The curriculum demonstration shows that the framework is applicable to publicly available documents, which means that programmes can audit their existing curricula for shift-sensitive outcomes before introducing AI tools. This is a proactive rather than reactive use: instead of discovering after the fact that an AI tool has displaced cognitive demand, designers can identify vulnerable outcomes in advance.
-
-\subsection{Implications for AI Evaluation in Education}
-
-Current evaluations of AI in education focus predominantly on output quality: accuracy, alignment with Bloom levels, readability \cite{yaacoub_oneclickquiz_2025}. These evaluations are necessary but insufficient. They do not capture the process-level question of whether the tool's introduction has changed what learners are actually asked to do. KABL-ID provides a conceptual bridge: it accepts that a tool may produce high-quality content while still flagging a shift in cognitive demand.
+For curriculum authors, the contested outcomes point to wording that leaves the intended demand open. Outcomes such as ``koristi se programskim alatom za stvaranje programa'' (uses a programming tool to create a program) can be read as Apply or as Create; the difference matters when an AI tool can do either.
 
 \subsection{Transferability}
 
-The Croatian Informatics curriculum was selected as a demonstration case because it is publicly available, structured by domains and grade levels, and contains explicit learning outcomes with cognitive verbs. The framework is not specific to this curriculum. It can be applied to any curriculum with explicit outcome statements, including other national curricula (e.g., the Irish Junior Cycle, the Czech Framework Educational Programme) or institutional course catalogues. The Croatian case serves as a first demonstration, not a unique object of study.
+The Croatian Informatics curriculum was selected because it is publicly available, structured by domains and grade levels, and written as explicit outcome statements with cognitive verbs. The framework is not specific to this curriculum. It can be applied to any curriculum with explicit outcome statements, including other national curricula (e.g., the Irish Junior Cycle, the Czech Framework Educational Programme) or institutional course catalogues. The coding protocol, prompt, and analysis pipeline are released so that the study can be repeated on other curricula and in other languages.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Limitations}
 \label{sec:limitations}
 
-The first limitation is the absence of empirical validation with instructional designers. The KABL-ID matrix has been constructed and demonstrated, but it has not been tested for usability, inter-rater reliability, or whether classifications lead to design changes that designers consider appropriate. These are empirical questions requiring a separate study.
+The first limitation concerns the human coders. There were two, both with a similar background in informatics and pedagogy. Their shared background may make their codings more similar to each other than those of coders from other professional groups would be. A larger and more varied panel (classroom teachers, curriculum authors, instructional designers) would give a sturdier human reference.
 
-The second limitation concerns the PRISMA review. It was conducted by a single reviewer, without a second independent screener, and without formal protocol registration. This introduces risk of selection bias. The review's purpose is conceptual mapping rather than effect estimation, which mitigates but does not eliminate this concern.
+The second limitation concerns the unit of coding. Only outcome statements were coded, without the elaborations and achievement levels that accompany them in the curriculum. The statements are what designers most often work from, but the fuller text could resolve some of the contested readings.
 
-The third limitation is the curriculum demonstration. It covers one domain of one curriculum in one country. It shows that the matrix can be applied, not that it produces generalisable results. The coding was performed by the author alone, without a second coder or inter-rater reliability assessment.
+The third limitation concerns the LLMs. The models were used through their public chat services, whose versions change over time, and outputs are not fully reproducible. Session settings were not logged, and for Perplexity the underlying model was not recorded. The run-to-run and shuffled-order analyses estimate this variability but do not remove it. Results may also depend on the prompt language: the protocol was given in English while the outcomes were in Croatian.
 
-The fourth limitation is the matrix itself. The cell descriptors are brief and may not capture all relevant distinctions. The framework assumes that ABC learning types and Bloom levels are sufficient to characterise the relevant cognitive demand, which is a simplification.
+The fourth limitation is the PRISMA review. It was conducted by a single reviewer, without a second independent screener, without formal protocol registration, and without a formal risk-of-bias assessment; reference lists and grey literature were not searched. This introduces a risk of selection bias. The review's purpose is conceptual mapping rather than effect estimation, which mitigates but does not eliminate this concern.
 
-A fifth limitation is that the framework addresses only cognitive demand, not affective, social, or ethical dimensions of AI integration.
+The fifth limitation is the framework itself. The matrix has not yet been tested with instructional designers for usability, and the A/S/R overlay has been illustrated rather than coded empirically; its inter-rater reliability is a question for the next study. The cell descriptors are brief, the framework assumes that ABC learning types and Bloom levels are sufficient to characterise cognitive demand, and it addresses only cognitive demand, not affective, social, or ethical dimensions of AI integration. Finally, a single curriculum in a single country was coded.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 \label{sec:conclusion}
 
-This paper proposed KABL-ID, a conceptual diagnostic framework for detecting and documenting AI-induced cognitive shifts in instructional design. The framework combines ABC learning types with Bloom's taxonomy levels into a 36-cell matrix and introduces a three-mode overlay (assistive, substitutive, redesign required). The diagnostic rule is: if a substitutive mode is recorded at Bloom level Analyze or above, a shift has occurred and must be documented.
+This paper proposed KABL-ID, a diagnostic framework for detecting and documenting AI-induced cognitive shifts in instructional design. The framework combines ABC learning types with Bloom's taxonomy levels into a 36-cell matrix and introduces a three-mode overlay (assistive, substitutive, redesign required). The diagnostic rule is: if a substitutive mode is recorded at Bloom level Analyze or above, a shift has occurred and must be documented.
 
-The PRISMA-guided review established that existing work assesses cognitive alignment of AI-generated content but does not provide a process-level diagnostic for cognitive shifts. The curriculum demonstration showed that the matrix can be applied to real learning outcomes and produces actionable classifications.
+The PRISMA-guided review established that existing work assesses cognitive alignment of AI-generated content but does not provide a process-level diagnostic for cognitive shifts. Applied to all 127 outcomes of the Croatian Informatics curriculum, the matrix coordinates were assigned with substantial to almost perfect agreement by two independent human coders. Five LLMs reproduced the coding at a similar level, consistently across runs and item orders, but leaned towards the coder who applied the rules most literally. Close to two thirds of the curriculum lies in shift-sensitive cells, concentrated where current AI tools are strongest: analysing information and producing artefacts.
 
-The contribution is threefold: terminological (distinguishing cognitive alignment from cognitive shift), operational (providing a matrix applicable without student data), and demonstrative (showing applicability on a national curriculum). The limitations define the next phase: empirical testing with designers, assessment of inter-rater reliability, and extension to other curricula and dimensions of design quality.
+The contribution is fourfold: terminological (distinguishing cognitive alignment from cognitive shift), operational (a complete matrix applicable without student data), empirical (reliability evidence from human and LLM coders on a full national curriculum), and diagnostic (a map of where that curriculum is exposed to cognitive shift). The next steps are testing the A/S/R overlay with designers, assessing its reliability, and extending the analysis to other curricula and languages.
 
-The practical implication is immediate: instructional designers can use KABL-ID to record what an AI tool is doing and whether it displaces the cognitive work the activity was designed to require. This record is a first step toward ensuring that AI supports rather than silently substitutes for the cognitive demand that education claims to provide.
+The practical implication is immediate. Instructional designers can use KABL-ID to record what an AI tool is doing and whether it displaces the cognitive work the activity was designed to require. LLMs can help them apply it, as checkers that point to contested outcomes rather than as substitutes for the designer's own analysis. This record is a first step toward ensuring that AI supports rather than silently substitutes for the cognitive demand that education claims to provide.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{6pt} 
+\vspace{6pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
@@ -370,15 +803,27 @@ The practical implication is immediate: instructional designers can use KABL-ID 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{
-Conceptualization, M.M.; methodology, M.M.; formal analysis, M.M.; investigation, M.M.; writing---original draft preparation, M.M.; writing---review and editing, M.M. The author has read and agreed to the published version of the manuscript.}
+Conceptualization, M.M., S.B.Š. and I.L.;
+methodology, M.M., S.B.Š. and D.E.;
+software, M.M.;
+validation, I.L., S.B.Š. and D.E.;
+formal analysis, M.M.;
+investigation, M.M.;
+data curation, M.M.;
+writing---original draft preparation, M.M.;
+writing---review and editing, S.B.Š., I.L. and D.E.;
+visualization, M.M.;
+supervision, S.B.Š. and I.L.;
+project administration, S.B.Š., I.L. and D.E.;
+funding acquisition, S.B.Š. and I.L.
 
-\funding{This research received no external funding.}
+\noindent All authors have read and agreed to the published version of the manuscript.}
 
-\acknowledgments{The author thanks colleagues at the Faculty of Informatics, Juraj Dobrila University of Pula, for discussions that informed the framework.}
+\funding{This work was (partially) supported by the EC Digital Europe Programme EDIH Adria 2.0 (101256325); SPIN projects IP.1.1.03.0120, IP.1.1.03.0158 and IP.1.1.03.0039; and NextGenerationEU University grants: uniri-iz-25-6, uniri-iz-25-220, IIP\_010144, IIP\_010136}
 
-\dataavailability{No new data were created or analyzed in this study. Data sharing is not applicable to this article.}
+\dataavailability{The coded outcomes, all raw human and LLM codings, the coding protocol and LLM prompt, and the analysis code that produces every table and figure in this article are openly available at \url{https://github.com/FIPU-SPIN/kabl-code}.}
 
-\conflictsofinterest{The author declares no conflicts of interest.} 
+\conflictsofinterest{The authors declare no conflicts of interest.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
@@ -393,9 +838,15 @@ The following abbreviations are used in this manuscript:
 \begin{tabular}{@{}ll}
 AI    & Artificial Intelligence \\
 ABC   & Arena Blended Connected (Learning Design) \\
+AC1   & Gwet's first-order agreement coefficient \\
+CI    & Confidence Interval \\
+GRRAS & Guidelines for Reporting Reliability and Agreement Studies \\
 KABL-ID & Cognitive Alignment Baseline for Instructional Design \\
-PRISMA & Preferred Reporting Items for Systematic Reviews and Meta-Analyses \\
 LD    & Learning Design \\
+LLM   & Large Language Model \\
+OS    & Osnovna škola (primary school) \\
+PRISMA & Preferred Reporting Items for Systematic Reviews and Meta-Analyses \\
+SS    & Srednja škola (secondary school; gymnasium) \\
 \end{tabular}
 }
 
@@ -404,35 +855,96 @@ LD    & Learning Design \\
 \appendixstart
 \appendix
 
-\section[\appendixname~\thesection]{PRISMA Checklist Summary}
+\section[\appendixname~\thesection]{PRISMA 2020 Checklist}
 \label{appendix:prisma}
 
+Table~\ref{tab:prismachecklist} maps all 27 items of the PRISMA 2020 checklist \cite{page_prisma_2021} to their location in this article. Items that concern the pooling of effect estimates are marked as not applicable, because the review is a conceptual mapping with narrative synthesis.
+
+{\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{p{0.7cm}p{3.0cm}p{8.3cm}}
+\caption{PRISMA 2020 checklist.}
+\label{tab:prismachecklist}\\
+\toprule
+\textbf{Item} & \textbf{Topic} & \textbf{Location / status} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Item} & \textbf{Topic} & \textbf{Location / status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{3}{l}{\textit{Title and abstract}} \\
+1 & Title & Partly: the review is one component of a framework and reliability study; identified in the abstract and Section~\ref{sec:prisma}. \\
+2 & Abstract & Abstract (review scope and number of included studies). \\
+\multicolumn{3}{l}{\textit{Introduction}} \\
+3 & Rationale & Section 1; Section~\ref{sec:related}. \\
+4 & Objectives & Section 1 (gap statement; RQ1--RQ3 for the empirical part). \\
+\multicolumn{3}{l}{\textit{Methods}} \\
+5 & Eligibility criteria & Section~\ref{sec:eligibility}. \\
+6 & Information sources & Section~\ref{sec:search}: Scopus, Web of Science, ERIC; coverage January 2015 to December 2025. Reference lists and grey literature not searched. \\
+7 & Search strategy & Section~\ref{sec:search}; full database strings in Appendix~\ref{appendix:search}. \\
+8 & Selection process & Section~\ref{sec:selection}: single reviewer, title/abstract then full text; no automation tools. \\
+9 & Data collection process & Section~\ref{sec:extraction}: single reviewer, structured extraction form. \\
+10a & Data items: outcomes & Section~\ref{sec:extraction}: key findings relevant to the gap; process-level vs.\ product-level focus. \\
+10b & Data items: other variables & Section~\ref{sec:extraction}: authors, year, publication type, focus area. \\
+11 & Study risk of bias assessment & Section~\ref{sec:synthesis}: not assessed formally; design and publication type reported instead. \\
+12 & Effect measures & Not applicable (no effects pooled). \\
+13a & Synthesis: eligibility for each synthesis & Section~\ref{sec:synthesis}: grouping by focus category. \\
+13b & Synthesis: data preparation & Not applicable (no quantitative data). \\
+13c & Synthesis: tabulation and display & Table~\ref{tab:included}. \\
+13d & Synthesis methods & Section~\ref{sec:synthesis}: narrative synthesis. \\
+13e & Heterogeneity & Not applicable. \\
+13f & Sensitivity analyses & Not applicable. \\
+14 & Reporting bias assessment & Not assessed; acknowledged in Section~\ref{sec:limitations}. \\
+15 & Certainty assessment & Not applicable (Section~\ref{sec:synthesis}). \\
+\multicolumn{3}{l}{\textit{Results}} \\
+16a & Study selection & Section~\ref{sec:prisma_results}; Figure~\ref{fig:prisma}. \\
+16b & Excluded studies & Section~\ref{sec:prisma_results}: reasons for full-text exclusion with counts (Figure~\ref{fig:prisma}). \\
+17 & Study characteristics & Table~\ref{tab:included}. \\
+18 & Risk of bias in studies & Not assessed (item 11). \\
+19 & Results of individual studies & Table~\ref{tab:included} (relevant finding per study). \\
+20a & Results of syntheses: characteristics & Section~\ref{sec:prisma_results}: four categories plus background. \\
+20b & Results of statistical syntheses & Not applicable. \\
+20c & Heterogeneity & Not applicable. \\
+20d & Sensitivity & Not applicable. \\
+21 & Reporting biases & Not assessed. \\
+22 & Certainty of evidence & Not applicable. \\
+\multicolumn{3}{l}{\textit{Discussion}} \\
+23a & Interpretation & Section~\ref{sec:discussion}. \\
+23b & Limitations of the evidence & Section~\ref{sec:prisma_results} (no study addresses the process level); Section~\ref{sec:limitations}. \\
+23c & Limitations of the review process & Section~\ref{sec:limitations} (single reviewer, no registration, no risk-of-bias tool). \\
+23d & Implications & Sections~\ref{sec:discussion} and~\ref{sec:conclusion}. \\
+\multicolumn{3}{l}{\textit{Other information}} \\
+24a & Registration & Not registered (Section~\ref{sec:prisma}). \\
+24b & Protocol & No protocol prepared (Section~\ref{sec:prisma}). \\
+24c & Amendments & Not applicable. \\
+25 & Support & Funding statement. \\
+26 & Competing interests & Conflicts of interest statement. \\
+27 & Availability of data, code, and other materials & Data Availability Statement; Table~\ref{tab:included}; Appendix~\ref{appendix:search}. \\
+\end{longtable}
+}
+
+\section[\appendixname~\thesection]{Database Search Strings}
+\label{appendix:search}
+
+The combined search string of Section~\ref{sec:search} was expressed in the syntax of each database as follows.
+
 \begin{table}[H]
-\caption{PRISMA 2020 checklist items addressed in this paper (abbreviated).}
+\caption{Search strings by database.}
+\label{tab:searchstrings}
 \centering
-\small
+\scriptsize
 \begin{tabularx}{\linewidth}{lX}
 \toprule
-Item & Location / Status \\
+\textbf{Database} & \textbf{Search string and filters} \\
 \midrule
-Title identifies as systematic review & Partially (combined with conceptual framework) \\
-Rationale & Section 1 \\
-Objectives & Section 1 \\
-Eligibility criteria & Section 3.2.2 \\
-Information sources & Section 3.2.3 \\
-Search strategy & Section 3.2.3 \\
-Selection process & Section 3.2.4 \\
-Data collection process & Section 3.2.5 \\
-Data items & Section 3.2.5 \\
-Study risk of bias & Not formally assessed; acknowledged as limitation \\
-Synthesis methods & Narrative synthesis; Section 4.1 \\
-Study selection results & Section 4.1 \\
-Study characteristics & Section 4.1 \\
-Results of syntheses & Section 4.1 \\
-Limitations of evidence & Section 6 \\
-Interpretation & Section 5 \\
-Funding & Funding statement \\
-Registration & Not registered; acknowledged \\
+Scopus & \texttt{TITLE-ABS-KEY(("ABC Learning Design" OR "learning design" OR "instructional design") AND ("Bloom's taxonomy" OR "cognitive alignment" OR "cognitive level" OR "artificial intelligence" OR "generative AI" OR "large language model")) AND PUBYEAR > 2014 AND PUBYEAR < 2026 AND LIMIT-TO(LANGUAGE, "English")} \\
+\midrule
+Web of Science & \texttt{TS=(("ABC Learning Design" OR "learning design" OR "instructional design") AND ("Bloom's taxonomy" OR "cognitive alignment" OR "cognitive level" OR "artificial intelligence" OR "generative AI" OR "large language model"))}; Publication years 2015--2025; Language: English \\
+\midrule
+ERIC & \texttt{("ABC Learning Design" OR "learning design" OR "instructional design") AND ("Bloom's taxonomy" OR "cognitive alignment" OR "cognitive level" OR "artificial intelligence" OR "generative AI" OR "large language model")}; Peer reviewed only; Publication date 2015--2025 \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -440,9 +952,153 @@ Registration & Not registered; acknowledged \\
 \section[\appendixname~\thesection]{Curriculum Coding Record}
 \label{appendix:coding}
 
-The coding record for the four outcomes in Table~\ref{tab:curriculum} follows the KABL-ID protocol: each outcome was decomposed into its action verb, the Bloom level was assigned according to the revised taxonomy verb lists \cite{anderson_krathwohl_2001}, and the ABC type was assigned based on the activity structure described in the outcome.
+Table~\ref{tab:fullcoding} lists all 127 outcomes with the Bloom level and ABC type assigned by each human coder and the reference coding (plurality across the two human coders and the five model consensus codings; number of votes out of seven in parentheses). ABC abbreviations: Acq = Acquisition, Inv = Investigation, Pra = Practice, Dis = Discussion, Col = Collaboration, Pro = Production. All individual LLM runs are available in the repository.
 
-For a full coding of all outcomes in the Computational Thinking and Programming domain across all grade levels, the same protocol applies. The author's working coding sheet is available on request.
+{\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{p{1.35cm}p{6.6cm}cccccc}
+\caption{Full coding record of the 127 outcomes. C1, C2 = human coders; Ref = reference coding. $^{\dagger}$Tie (3/3/1) resolved as described in Section~\ref{sec:stats}.}
+\label{tab:fullcoding}\\
+\toprule
+\textbf{Code} & \textbf{Outcome (Croatian)} & \multicolumn{3}{c}{\textbf{Bloom}} & \multicolumn{3}{c}{\textbf{ABC}} \\
+ & & \textbf{C1} & \textbf{C2} & \textbf{Ref} & \textbf{C1} & \textbf{C2} & \textbf{Ref} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Code} & \textbf{Outcome (Croatian)} & \textbf{C1} & \textbf{C2} & \textbf{Ref} & \textbf{C1} & \textbf{C2} & \textbf{Ref} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+OS1 A.1.1 & prepoznaje digitalnu tehnologiju i komunicira s poznatim osobama uz pomoć učitelja u sigurnome digitalnom okruženju & 3 & 1 & 1 (4/7) & Pra & Acq & Acq (3/7)$^{\dagger}$ \\
+OS1 A.1.2 & razlikuje oblike digitalnih sadržaja, uređaje i postupke za njihovo stvaranje & 2 & 4 & 2 (4/7) & Acq & Inv & Acq (5/7) \\
+OS1 B.1.1 & rješava jednostavan logički zadatak & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS1 B.1.2 & prati i prikazuje slijed koraka potrebnih za rješavanje nekoga jednostavnog zadatka & 2 & 2 & 2 (7/7) & Pra & Pra & Pra (6/7) \\
+OS1 C.1.1 & uz podršku učitelja koristi se predloženim programima i digitalnim obrazovnim sadržajima & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS1 C.1.2 & uz podršku učitelja vrlo jednostavnim radnjama izrađuje jednostavne digitalne sadržaje & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS1 D.1.1 & pažljivo i odgovorno koristi se informacijskom i komunikacijskom opremom i štiti svoje osobne podatke & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS1 D.1.2 & primjenjuje zdrave navike ponašanja tijekom rada na računalu i prihvaća preporuke o količini vremena provedenoga za računalom & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS2 A.2.1 & objašnjava ulogu programa u uporabi računala & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+OS2 A.2.2 & uz pomoć učitelja prepoznaje internet kao izvor nekih usluga i podataka te pretražuje preporučene sadržaje & 3 & 1 & 3 (5/7) & Pra & Inv & Pra (4/7) \\
+OS2 B.2.1 & analizira niz uputa koje izvode jednostavan zadatak, ako je potrebno ispravlja pogrešan redoslijed & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (6/7) \\
+OS2 B.2.2 & stvara niz uputa u kojemu upotrebljava ponavljanje & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS2 C.2.1 & prema savjetima učitelja odabire uređaj i program za jednostavne školske zadatke & 3 & 5 & 3 (4/7) & Pra & Inv & Pra (6/7) \\
+OS2 C.2.2 & izrađuje digitalne radove kombiniranjem različitih oblika sadržaja uz podršku učitelja & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS2 C.2.3 & uz pomoć učitelja surađuje i komunicira s poznatim osobama u sigurnome digitalnom okruženju & 3 & 3 & 3 (7/7) & Col & Col & Col (7/7) \\
+OS2 D.2.1 & prepoznaje i opisuje neke poslove koji se koriste informacijskom i komunikacijskom tehnologijom & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+OS2 D.2.2 & koristi se e-uslugama u području odgoja i obrazovanja & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS2 D.2.3 & analizira neke opasnosti koje mogu nastupiti pri uporabi računala i interneta te pravilno na njih reagira & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (6/7) \\
+OS2 D.2.4 & odgovorno se ponaša pri korištenju sadržajima i uslugama na internetu radi zaštite osobnih podataka i digitalnoga ugleda & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS3 A.3.1 & koristi se simbolima za prikazivanje podataka & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS3 A.3.2 & objašnjava i analizira jednostavne hardverske/softverske probleme i poteškoće koji se mogu dogoditi tijekom njihove uporabe & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS3 B.3.1 & stvara program korištenjem vizualnoga okruženja u kojem se koristi slijedom koraka, ponavljanjem i odlukom te uz pomoć učitelja vrednuje svoje rješenje & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS3 B.3.2 & slaže podatke na koristan način & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS3 C.3.1 & samostalno odabire uređaj i program iz skupa predloženih te procjenjuje načine njihove uporabe & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (7/7) \\
+OS3 C.3.2 & prema uputama izrađuje jednostavne digitalne radove & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS3 C.3.3 & koristi se sigurnim digitalnim okruženjem za komunikaciju u suradničkim aktivnostima & 3 & 3 & 3 (7/7) & Col & Col & Col (7/7) \\
+OS3 C.3.4 & razlikuje uloge i aktivnosti koje zahtijeva suradničko online okruženje & 2 & 4 & 2 (4/7) & Acq & Inv & Acq (5/7) \\
+OS3 D.3.1 & primjenjuje preporuke o preraspodjeli vremena u kojemu se koristi digitalnom tehnologijom za učenje, komunikaciju i zabavu te primjenjuje zdrave navike & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS3 D.3.2 & primjereno reagira na svaku opasnost/neugodnost u digitalnome okruženju, štiti svoje i tuđe osobne podatke & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS4 A.4.1 & objašnjava koncept računalne mreže, razlikuje mogućnosti koje one nude za komunikaciju i suradnju, opisuje ih kao izvor podataka & 2 & 2 & 2 (5/7) & Acq & Acq & Acq (7/7) \\
+OS4 A.4.2 & analizira čimbenike koji razlikuju ljude od strojeva te proučava načine interakcije čovjek – stroj & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS4 A.4.3 & koristi se simbolima za prikazivanje podataka, analizira postupak prikazivanja te vrednuje njegovu učinkovitost & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (7/7) \\
+OS4 B.4.1 & stvara program korištenjem vizualnog okruženja u kojem koristi slijed, ponavljanje, odluku i ulazne vrijednosti & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS4 B.4.2 & rješava složenije logičke zadatke s uporabom računala ili bez uporabe računala & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS4 C.4.1 & odabire prikladan program za zadani zadatak, preporučuje ga drugima te istražuje mogućnosti sličnih programa & 5 & 5 & 5 (6/7) & Inv & Inv & Inv (7/7) \\
+OS4 C.4.2 & osmišljava plan izrade digitalnoga rada, izrađuje i vrednuje rad & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+OS4 C.4.3 & u suradničkome online okruženju zajednički planira i ostvaruje jednostavne ideje & 6 & 6 & 6 (7/7) & Col & Col & Col (7/7) \\
+OS4 D.4.1 & istražuje ograničenja uporabe računalne tehnologije te primjenjuje upute za očuvanje zdravlja i sigurnost pri radu s računalom & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS4 D.4.2 & analizira široki spektar poslova koji zahtijevaju znanje ili uporabu informacijske i komunikacijske tehnologije & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS5 A.5.1 & pronalazi i vrednuje informacije & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (7/7) \\
+OS5 A.5.2 & istražuje glavne komponente uobičajenih digitalnih sustava, određuje osnovne funkcije i veze s drugima, istražuje kako se takvi sustavi mogu povezivati mrežom i kako razmjenjivati podatke & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS5 A.5.3 & analizira način na koji računalo pohranjuje sve vrste podataka & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS5 B.5.1 & koristi se programskim alatom za stvaranje programa u kojemu se koristi ulaznim i izlaznim vrijednostima te ponavljanjem & 6 & 3 & 6 (4/7) & Pro & Pra & Pro (4/7) \\
+OS5 B.5.2 & stvara algoritam za rješavanje jednostavnoga zadatka, provjerava ispravnost algoritma, otkriva i popravlja pogreške & 6 & 5 & 6 (6/7) & Pro & Pra & Pro (6/7) \\
+OS5 C.5.1 & prilagođava korisničko sučelje operacijskoga sustava svojim potrebama, samostalno otkriva i pokazuje dodatne mogućnosti operacijskoga sustava & 3 & 3 & 3 (5/7) & Pra & Pra & Pra (7/7) \\
+OS5 C.5.2 & koristi se mogućnostima sustava za pohranjivanje i organizaciju datoteka & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS5 C.5.3 & osmišljava plan izrade digitalnog rada, izrađuje ga, pohranjuje u mapu digitalnih radova (e-portfolio) i vrednuje ga & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+OS5 C.5.4 & upotrebljava multimedijske programe za ostvarivanje složenijih ideja u komunikacijskome ili suradničkome okruženju & 6 & 3 & 6 (5/7) & Pro & Pro & Pro (6/7) \\
+OS5 D.5.1 & analizira etička pitanja koja proizlaze iz korištenja računalnom tehnologijom & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (6/7) \\
+OS5 D.5.2 & argumentira i procjenjuje važnost zbrinjavanja elektroničkoga otpada te objašnjava postupke njegova zbrinjavanja & 5 & 5 & 5 (7/7) & Dis & Dis & Dis (7/7) \\
+OS6 A.6.1 & planira i stvara vlastite hijerarhijske organizacije te analizira organizaciju na računalnim i mrežnim mjestima & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS6 A.6.2 & opisuje načine povezivanja uređaja u mrežu, analizira prednosti i nedostatke mrežnoga povezivanja te odabire i primjenjuje postupke za zaštitu na mreži & 4 & 5 & 5 (4/7) & Inv & Inv & Inv (7/7) \\
+OS6 B.6.1 & stvara, prati i preuređuje programe koji sadrže strukture grananja i uvjetnoga ponavljanja te predviđa ponašanje jednostavnih algoritama koji mogu biti prikazani dijagramom, riječima govornoga jezika ili programskim jezikom & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS6 B.6.2 & razmatra i rješava složeniji problem rastavljajući ga na niz potproblema & 4 & 4 & 4 (7/7) & Pra & Pra & Pra (6/7) \\
+OS6 C.6.1 & izrađuje, objavljuje te predstavlja digitalne sadržaje s pomoću nekoga online i/ili offline programa pri čemu poštuje uvjete korištenja programom te postavke privatnosti & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS6 C.6.2 & koristi se online pohranom podataka i primjerenim programima kao potporom u učenju i istraživanju te suradnji & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (6/7) \\
+OS6 C.6.3 & surađuje s drugim učenicima u stvaranju online sadržaja & 6 & 6 & 6 (7/7) & Col & Col & Col (7/7) \\
+OS6 D.6.1 & objašnjava ulogu i važnost digitalnih tragova, stvara svoje pozitivne digitalne tragove & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (6/7) \\
+OS6 D.6.2 & prepoznaje vrste elektroničkoga nasilja, analizira ih i odabire preventivne načine djelovanja za različite slučajeve elektroničkoga nasilja & 4 & 5 & 4 (4/7) & Inv & Inv & Inv (7/7) \\
+OS6 D.6.3 & pronalazi mrežne zajednice učenja koje su od osobnog interesa i pridružuje im se (online kolegij, grupe i sl.) & 3 & 3 & 3 (5/7) & Pra & Pra & Pra (5/7) \\
+OS7 A.7.1 & prepoznaje i opisuje ulogu glavnih komponenti računalnih mreža, istražuje kako obilježja strojne opreme utječu na mrežne aktivnosti, koristi se zajedničkim dijeljenjem resursa na mreži & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS7 A.7.2 & primjenjuje strategije za prepoznavanje i rješavanje rutinskih hardverskih/softverskih problema do kojih može doći tijekom uporabe računalne tehnologije & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS7 A.7.3 & prikuplja i unosi podatke kojima se analizira neki problem s pomoću odgovarajućega programa, otkriva odnos među podatcima koristeći se različitim alatima programa te mogućnostima prikazivanja podataka & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS7 A.7.4 & opisuje, uspoređuje i koristi se različitim formatima zapisivanja grafičkih i zvučnih podataka te videopodataka na računalu & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS7 B.7.1 & razvija algoritme za rješavanje različitih problema koristeći se nekim programskim jezikom pri čemu se koristi prikladnim strukturama i tipovima podataka & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS7 B.7.2 & primjenjuje algoritam (sekvencijalnog) pretraživanja pri rješavanju problema & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS7 B.7.3 & dizajnira i izrađuje modularne programe koji sadrže potprograme u programskom jeziku & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS7 B.7.4 & koristi se simulacijom pri rješavanju nekoga, ne nužno računalnoga, problema & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS7 C.7.1 & koristi i upoznaje se s različitim platformama i programima, koje prema potrebi pronalazi i instalira & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS7 C.7.2 & priprema, izrađuje te objavljuje vlastite mrežne stranice u skladu s dobrom praksom u području intelektualnoga vlasništva, kritički prosuđuje dobra i loša obilježja pojedinih mrežnih sadržaja & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS7 D.7.1 & štiti svoj elektronički identitet i primjenjuje pravila za povećanje sigurnosti korisničkih računa & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS7 D.7.2 & demonstrira i argumentirano opisuje primjere dobrih strana dijeljenja informacija na internetu i njihova brzog širenja te primjenjuje pravila odgovornoga ponašanja & 5 & 5 & 5 (7/7) & Dis & Dis & Dis (7/7) \\
+OS7 D.7.3 & analizira proces suradnje među članovima virtualnih zajednica te njezin utjecaj na sve članove grupe, provjerava i proučava mogućnosti i načine otvaranja virtualne zajednice & 4 & 5 & 5 (4/7) & Inv & Inv & Inv (6/7) \\
+OS7 D.7.4 & prepoznaje i proučava interdisciplinarne poslove koji su poboljšani razvojem informatike i informacijske i komunikacijske tehnologije & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS8 A.8.1 & kritički procjenjuje točnost, učestalost, relevantnost i pouzdanost informacija i njihovih izvora & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (7/7) \\
+OS8 A.8.2 & opisuje i planira organizaciju baze podataka, koristi se nekim programom za upravljanje bazama podataka za lakše pretraživanje i sortiranje podataka & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (6/7) \\
+OS8 A.8.3 & opisuje građu računalnih uređaja, objašnjava načine prijenosa podataka u računalu te analizira i vrednuje neka obilježja računala koja značajno utječu na kvalitetu rada samoga računala & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (6/7) \\
+OS8 A.8.4 & prepoznaje i proučava interdisciplinarnu primjenu računalnoga razmišljanja analiziranjem i rješavanjem odabranih problema iz različitih područja učenja & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS8 B.8.1 & identificira neki problem iz stvarnoga svijeta, stvara program za njegovo rješavanje, dokumentira rad programa i predstavlja djelovanje programa drugima & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+OS8 B.8.2 & prepoznaje i opisuje algoritam sortiranja, primjenjuje jedan algoritam sortiranja za rješavanje zadanoga problema u programskom jeziku & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS8 B.8.3 & prepoznaje i opisuje mogućnost primjene rekurzivnih postupaka pri rješavanju odabranih problema te istražuje daljnje mogućnosti primjene rekurzije & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS8 C.8.1 & pronalazi, opisuje te uspoređuje različite servise za objavljivanje mrežnoga sadržaja, opisuje postupak objavljivanja mrežnoga sadržaja & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+OS8 C.8.2 & samostalno pronalazi informacije i programe, odabire prikladne izvore informacija te uređuje, stvara i objavljuje/dijeli digitalne sadržaje & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+OS8 C.8.3 & dizajnira, razvija, objavljuje i predstavlja radove s pomoću sredstava informacijske i komunikacijske tehnologije primjenjujući suradničke aktivnosti & 6 & 6 & 6 (7/7) & Col & Pro & Col (6/7) \\
+OS8 D.8.1 & učinkovito se koristi dostupnim e-uslugama u području odgoja i obrazovanja & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+OS8 D.8.2 & aktivno sudjeluje u sprečavanju elektroničkoga nasilja i govora mržnje & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (6/7) \\
+SS1 A.1.1 & objašnjava glavne komponente računalnoga sustava i njihove funkcije & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+SS1 A.1.2 & primjenjuje principe hijerarhijske organizacije mapa u računalnim memorijama te razlikuje formate datoteka & 3 & 4 & 3 (5/7) & Pra & Inv & Pra (6/7) \\
+SS1 A.1.3 & analizira i primjenjuje sažimanje datoteka & 4 & 4 & 4 (7/7) & Pra & Inv & Pra (4/7) \\
+SS1 A.1.4 & analizira ulogu binarnoga i heksadekadskoga brojevnog sustava u predstavljanju digitalnoga prikaza različitih tipova podataka & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS1 A.1.5 & definira logički izraz za zadani problem & 3 & 6 & 3 (5/7) & Pra & Pro & Pra (5/7) \\
+SS1 B.1.1 & analizira problem, definira ulazne i izlazne vrijednosti te uočava korake za rješavanje problema & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (6/7) \\
+SS1 B.1.2 & primjenjuje jednostavne tipove podataka te argumentira njihov odabir, primjenjuje različite vrste izraza, operacija, relacija i standardnih funkcija za modeliranje jednostavnoga problema u odabranome programskom jeziku & 3 & 5 & 5 (5/7) & Pra & Pra & Pra (6/7) \\
+SS1 B.1.3 & razvija algoritam i stvara program u odabranome programskom jeziku rješavajući problem uporabom strukture grananja i ponavljanja & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS1 C.1.1 & pronalazi podatke i informacije, odabire prikladne izvore informacija te uređuje, stvara i objavljuje/dijeli svoje digitalne sadržaje & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS1 C.1.2 & istražuje usluge interneta i mogućnosti učenja, poslovanja, budućega razvoja & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS1 C.1.3 & u online okruženju surađuje i radi na projektu & 3 & 6 & 3 (5/7) & Col & Col & Col (7/7) \\
+SS1 D.1.1 & u suradničkome online okruženju na zajedničkom projektu analizira etička pitanja koja proizlaze iz korištenja računalnom tehnologijom & 4 & 4 & 4 (7/7) & Col & Col & Col (7/7) \\
+SS1 D.1.2 & opisuje probleme koje mogu prouzročiti zlonamjerni programi te probleme koji nastaju kao rezultat elektroničkih napada i krađe elektroničkoga identiteta te odgovorno primjenjuje sigurnosna pravila & 3 & 3 & 3 (7/7) & Acq & Pra & Pra (5/7) \\
+SS1 D.1.3 & analizira ulogu koju pomoćna tehnologija i prilagođeni digitalni sadržaji mogu imati u životima osoba s poteškoćama & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS2 A.2.1 & opisuje temeljne koncepte računalnih mreža & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+SS2 A.2.2 & opisuje princip kriptiranja te važnost primjene enkripcije u svakodnevnome životu & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+SS2 A.2.3 & objašnjava binarno zbrajanje cijelih brojeva kao temeljnu operaciju u računalu & 2 & 2 & 2 (7/7) & Acq & Acq & Acq (7/7) \\
+SS2 A.2.4a & konstruira smisleni logički sklop & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS2 A.2.4b & opisuje, modelira i stvara bazu podataka te ju primjenjuje pri rješavanju problema & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS2 B.2.1 & analizira osnovne algoritme s jednostavnim tipovima podataka i osnovnim programskim strukturama i primjenjuje ih pri rješavanju novih problema & 4 & 4 & 4 (7/7) & Pra & Inv & Inv (5/7) \\
+SS2 B.2.2 & u zadanome problemu uočava manje cjeline, rješava ih te ih potom integrira u jedinstveno rješenje problema & 6 & 4 & 4 (4/7) & Pro & Pra & Pra (5/7) \\
+SS2 B.2.3 & rješava problem primjenjujući jednodimenzionalnu strukturu podataka & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+SS2 B.2.4 & u suradnji s drugima osmišljava algoritam, implementira ga u odabranom programskom jeziku, testira program, dokumentira i predstavlja drugima mogućnosti i ograničenja programa & 6 & 6 & 6 (7/7) & Col & Col & Col (7/7) \\
+SS2 C.2.1 & u suradničkome online okruženju na zajedničkome projektu istražuje utjecaj ugradnje računalnih sustava u razne uređaje na svakodnevni život & 4 & 4 & 4 (7/7) & Col & Col & Col (7/7) \\
+SS2 C.2.2 & analizira programe s obzirom na licenciju i na preduvjete za instalaciju programa & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS2 C.2.3 & uspoređuje strategije prikupljanja podataka prema relevantnosti i pouzdanosti izvora podataka, odabranim programom učinkovito analizira i prikazuje podatke i rezultate & 4 & 5 & 5 (4/7) & Inv & Inv & Inv (7/7) \\
+SS2 D.2.1 & aktivno pridonosi unapređenju kvalitete života podizanjem ekološke svijesti & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (6/7) \\
+SS2 D.2.2 & analizira i procjenjuje utjecaj informacijske i komunikacijske tehnologije na učinkovitost i produktivnost u raznim područjima i poslovima & 5 & 5 & 5 (7/7) & Inv & Inv & Inv (7/7) \\
+SS3 A.3.1 & dizajnira, razvija i objavljuje strukturu povezanih mrežnih stranica s pomoću alata i tehnologija koje se izvode na računalu korisnika & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS3 B.3.1 & primjenjuje standardne algoritme definirane nad cijelim brojevima & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+SS3 B.3.2 & analizira sortiranje podataka kao važan koncept za rješavanje različitih problema & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS3 B.3.3 & koristeći neki grafički modul vizualizira i grafički prikazuje neki problem iz svoje okoline & 6 & 3 & 6 (4/7) & Pro & Pro & Pro (5/7) \\
+SS3 B.3.4 & rješava problem primjenjujući složene tipove podataka definirane zadanim programskim jezikom & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+SS3 B.3.5 & definira problem iz stvarnoga života i stvara programsko rješenje prolazeći sve faze programiranja, predstavlja programsko rješenje ostalima i vrednuje ga & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+SS3 C.3.1 & planira, razvija, stvara, predstavlja i vrednuje multimedijski projekt & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+SS4 A.4.1 & za jednostavni problem iz stvarnoga života oblikuje bazu podataka te ju realizira u nekom sustavu za rad s bazama podataka & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS4 B.4.1 & rješava problem primjenjujući rekurzivnu funkciju & 3 & 3 & 3 (7/7) & Pra & Pra & Pra (7/7) \\
+SS4 B.4.2 & uspoređuje različite algoritme sortiranja i pretraživanja podataka & 4 & 4 & 4 (7/7) & Inv & Inv & Inv (7/7) \\
+SS4 B.4.3 & osmišljava objektni model s pripadnim složenim strukturama podataka implementira ga u zadanome programskom jeziku & 6 & 6 & 6 (7/7) & Pro & Pro & Pro (7/7) \\
+SS4 B.4.4 & definira problem iz stvarnoga života i stvara programsko rješenje prolazeći sve faze programiranja, predstavlja programsko rješenje i vrednuje ga & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+SS4 C.4.1 & planira, razvija, stvara, predstavlja i vrednuje multimedijski projekt & 6 & 5 & 6 (6/7) & Pro & Pro & Pro (7/7) \\
+\end{longtable}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\isPreprints{}{% This command is only used for ``preprints''.
